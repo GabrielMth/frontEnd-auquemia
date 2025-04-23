@@ -15,14 +15,16 @@
 
 
     <div class="row" style="margin-top: 20px;">
-      <div class="col-2">
+
+      <div class="col-2" *ngFor="let funcionario of funcionarios">  
         <div class="card">
-          <img src="https://randomuser.me/api/portraits/men/1.jpg" class="card-img-top" alt="...">
+          <img src="https://randomuser.me/api/portraits/men/{{funcionario.id}}.jpg" class="card-img-top">
           <div class="card-body">
-            <p class="card-text">João</p>
+            <p class="card-text">{{funcionario.nome}}</p>
           </div>
         </div>
       </div>
+
     </div>
     
 </div>

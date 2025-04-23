@@ -9,13 +9,17 @@ import { Component } from '@angular/core';
 export class AppComponent {
   nome  = 'Gabriel';
   adicionado = false;
-  funcionarios: string[] = [];
+  funcionarios: { id: number, nome: string }[] = [];
+  id = 0;
 
   adicionar() {
     console.log(`Adicionado ${this.nome}`); // usando template literals. ao inves de concatenar
     this.adicionado = true;
 
-    this.funcionarios.push(this.nome);
+    this.funcionarios.push({
+      id: ++this.id,
+      nome: this.nome
+    });
   }
 
 }
