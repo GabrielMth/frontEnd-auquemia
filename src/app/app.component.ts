@@ -7,19 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  nome  = 'Gabriel';
-  adicionado = false;
-  funcionarios: { id: number, nome: string }[] = [];
-  id = 0;
+    funcionarios: { id: number, nome: string }[] = [];  
 
-  adicionar() {
-    console.log(`Adicionado ${this.nome}`); // usando template literals. ao inves de concatenar
-    this.adicionado = true;
 
-    this.funcionarios.push({
-      id: ++this.id,
-      nome: this.nome
-    });
-  }
+    aoAdicionar(funcionario: { id: number, nome: string }) {
+      this.funcionarios.push(funcionario);
+    }
 
 }
