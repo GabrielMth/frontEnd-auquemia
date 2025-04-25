@@ -1,26 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BemVindoComponent } from './bem-vindo/bem-vindo.component';
 import { FormsModule } from '@angular/forms';
-import { FuncionarCardComponent } from './funcionar-card/funcionar-card.component';
-import { FormsFuncionarioComponent } from './forms-funcionario/forms-funcionario.component';
+import { ButtonDemo } from './components/buttontest/buttontest.component'; // Componente standalone
 
 @NgModule({
   declarations: [
-    AppComponent,
-    BemVindoComponent,
-    FuncionarCardComponent,
-    FormsFuncionarioComponent // componente appcomponent pertence ao AppModule., pipes diretivas, ....
   ],
   imports: [
-    BrowserModule, // inclui coisas basicas e importantes como diretivas.
-    AppRoutingModule,
-    FormsModule
+    BrowserModule, // Módulos principais para a aplicação
+    FormsModule,
+    ButtonDemo,   // Aqui você importa o ButtonDemo diretamente, pois ele é standalone
+    AppComponent,
   ],
-  providers: [], // serviços.
-  bootstrap: [AppComponent] //componente principal que vai subir tudo no app
+  providers: [], // O AppComponent é usado como ponto de inicialização
 })
 export class AppModule { }
+
+

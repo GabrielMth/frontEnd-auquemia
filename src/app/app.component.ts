@@ -1,17 +1,12 @@
 import { Component } from '@angular/core';
+import { ButtonDemo } from './components/buttontest/buttontest.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   templateUrl: './app.component.html',
-  standalone: false,
-  styleUrls: ['./app.component.css']
+  styleUrl: './app.component.scss',
+  imports: [ButtonDemo],
 })
 export class AppComponent {
-    funcionarios: { id: number, nome: string }[] = [];  
-
-
-    aoAdicionar(funcionario: { id: number, nome: string }) {
-      this.funcionarios.push(funcionario);
-    }
-
 }
