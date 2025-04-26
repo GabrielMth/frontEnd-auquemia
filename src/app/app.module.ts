@@ -3,7 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { ButtonDemo } from './components/buttontest/buttontest.component'; // Componente standalone
+import { InputTextModule } from 'primeng/inputtext';
+import { DatePickerModule } from 'primeng/datepicker';
+import { ButtonModule } from 'primeng/button';
+
 
 @NgModule({
   declarations: [
@@ -11,10 +14,12 @@ import { ButtonDemo } from './components/buttontest/buttontest.component'; // Co
   imports: [
     BrowserModule, // Módulos principais para a aplicação
     FormsModule,
-    ButtonDemo,   // Aqui você importa o ButtonDemo diretamente, pois ele é standalone
+    ButtonModule,   // Aqui você importa o ButtonDemo diretamente, pois ele é standalone
     AppComponent,
+    InputTextModule,
+    DatePickerModule,
   ],
-  providers: [], // O AppComponent é usado como ponto de inicialização
+  providers: [],
 })
 export class AppModule { }
 

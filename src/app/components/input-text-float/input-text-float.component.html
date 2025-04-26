@@ -1,0 +1,70 @@
+<div class="container">
+
+  <div class="ui-g-12">
+    <h1>Lançamentos</h1>
+  </div>
+
+  <div style="display: block;">
+    <p-floatlabel variant="on">
+      <input pInputText id="on_label" [(ngModel)]="descricao" autocomplete="off" fluid />
+      <label for="on_label">Descrição</label>
+    </p-floatlabel>
+
+    <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+      <p-floatlabel variant="on" style="flex: 0.2;">
+        <p-datepicker [(ngModel)]="dataInicio" inputId="data_inicio" showIcon iconDisplay="input"
+          [showButtonBar]="true" />
+        <label for="data_inicio">Data</label>
+      </p-floatlabel>
+
+      <span>Até</span>
+
+      <p-floatlabel variant="on" style="flex: 0.2;">
+        <p-datepicker [(ngModel)]="dataFim" inputId="data_fim" showIcon iconDisplay="input" [showButtonBar]="true" />
+        <label for="data_fim">Data</label>
+      </p-floatlabel>
+    </div>
+
+    <div style="margin-top: 1rem;">
+      <p-button icon="pi pi-search" label="Pesquisar"></p-button>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="card">
+        <p-table
+          [value]="lancamentos"
+          [paginator]="true"
+          [rows]="10"
+          [tableStyle]="{ 'min-width': '50rem' }"
+          [rowsPerPageOptions]="[5, 10, 20]"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width:20%">Pessoa</th>
+              <th style="width:20%">Descrição</th>
+              <th style="width:20%">Vencimento</th>
+              <th style="width:20%">Pagamento</th>
+              <th style="width:20%">Valor</th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-lancamento>
+            <tr>
+              <td>{{ lancamento.pessoa }}</td>
+              <td>{{ lancamento.descricao }}</td>
+              <td>{{ lancamento.dataVencimento }}</td>
+              <td>{{ lancamento.dataPagamento || '-' }}</td>
+              <td>{{ lancamento.valor | currency:'BRL':'symbol':'1.2-2' }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+
+
+
+
+
+  </div>
+</div>

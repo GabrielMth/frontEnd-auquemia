@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
-import { ButtonDemo } from './components/buttontest/buttontest.component';
+import { Component, OnInit } from '@angular/core';
+import { LancamentoComponent } from './components/input-text-float/input-text-float.component';
 
 @Component({
-  selector: 'app-root',
   standalone: true,
+  selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  imports: [ButtonDemo],
+  styleUrls: ['./app.component.scss'],
+  imports: [LancamentoComponent],
 })
 export class AppComponent {
+
 }
