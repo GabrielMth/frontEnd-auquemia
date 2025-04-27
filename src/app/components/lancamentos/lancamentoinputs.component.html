@@ -25,8 +25,9 @@
       </p-floatlabel>
     </div>
 
-    <div style="margin-top: 1rem;">
-      <p-button icon="pi pi-search" label="Pesquisar"></p-button>
+    <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem; margin-top: 0.5rem;">
+        <p-button [raised]="true" label="Pesquisar" icon="pi pi-search" [loading]="loading" (onClick)="load()" />
+        <a [raised]="true" pButton href="/algum_link" label="Novo Lançamento" icon="pi pi-plus"></a>
     </div>
 
     <div class="ui-g-12">
@@ -36,15 +37,17 @@
           [paginator]="true"
           [rows]="10"
           [tableStyle]="{ 'min-width': '50rem' }"
-          [rowsPerPageOptions]="[5, 10, 20]"
+          [rowsPerPageOptions]="[5, 10, 20, 40]"
+          [scrollable]="true"
         >
           <ng-template pTemplate="header">
             <tr>
-              <th style="width:20%">Pessoa</th>
+              <th pSortableColumn="pessoa" style="width:20%">Pessoa <p-sortIcon field="pessoa"/></th>
               <th style="width:20%">Descrição</th>
               <th style="width:20%">Vencimento</th>
               <th style="width:20%">Pagamento</th>
-              <th style="width:20%">Valor</th>
+              <th pSortableColumn="valor" style="width:20%">Valor <p-sortIcon field="valor"/></th>
+              <th style="width:20%">Ações</th>
             </tr>
           </ng-template>
 
@@ -55,13 +58,15 @@
               <td>{{ lancamento.dataVencimento }}</td>
               <td>{{ lancamento.dataPagamento || '-' }}</td>
               <td>{{ lancamento.valor | currency:'BRL':'symbol':'1.2-2' }}</td>
+              <td style="display: flex; gap: 0.5rem; padding: 5px;">
+                <a [raised]="true" pButton href="/algum_link" icon="pi pi-address-book" pTooltip="Editar" tooltipPosition="right" showDelay="300" hideDelay="50"></a>
+                <a [raised]="true" severity="danger" pButton href="/algum_link" icon="pi pi-trash" pTooltip="Remover" tooltipPosition="right" showDelay="300" hideDelay="50"></a>
+              </td>
             </tr>
           </ng-template>
         </p-table>
       </div>
     </div>
-
-
 
 
 

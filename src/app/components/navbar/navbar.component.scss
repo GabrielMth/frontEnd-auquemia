@@ -1,0 +1,24 @@
+.navbar {
+  padding: 7px;
+  background: linear-gradient(to bottom, #05e8e8 ,(rgb(8, 150, 232)));
+}
+
+
+:host {
+  --p-menubar-mobile-button-hover-color: orange;
+  --p-menubar-padding: 5px;
+  --p-menubar-item-focus-color: black;
+}
+
+/* Estilos específicos para o menu */
+.user-menu {
+  position: absolute;
+  top: 53px; /* Ajuste conforme necessário para o alinhamento correto */
+  right: 7px; /* Ajuste para a posição do menu */
+  z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+}
+
+/* Caso queira adicionar um pouco de sombra para destacar o menu */
+.user-menu .p-menu {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
