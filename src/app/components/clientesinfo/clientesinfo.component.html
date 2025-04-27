@@ -1,0 +1,41 @@
+<div class="container">
+  <p-card class="cardclientes" header="Clientes">
+    <p class="m-0">
+      Lorem ipsum dolor sit amet...
+      Lorem ipsum dolor sit amet...
+      Lorem ipsum dolor sit amet...
+      Lorem ipsum dolor sit amet...
+      Lorem ipsum dolor sit amet...
+      Lorem ipsum dolor sit amet...
+      Lorem ipsum dolor sit amet...
+      Lorem ipsum dolor sit amet...
+      Lorem ipsum dolor sit amet...
+    </p>
+
+    <p-table [value]="pessoastemporario"
+             [paginator]="true"
+             [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+             [rowsPerPageOptions]="[5, 10, 20]">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width:25%">Name</th>
+          <th style="width:25%">Country</th>
+          <th style="width:25%">Company</th>
+          <th style="width:25%">Representative</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-pessoas>
+        <tr>
+          <td>{{ pessoas.codigo }}</td>
+          <td>{{ pessoas.name }}</td>
+          <td>{{ pessoas.dataVencimento }}</td>
+          <td>{{ pessoas.dataPagamento }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+
+
+  </p-card>
+</div>

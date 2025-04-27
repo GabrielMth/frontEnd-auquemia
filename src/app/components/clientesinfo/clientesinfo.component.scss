@@ -1,0 +1,16 @@
+.cardclientes {
+  --p-card-border-radius: 2px;
+  --p-card-shadow: 4px 0 6px -2px rgba(132, 120, 120, 0.5), -4px 0 6px -2px rgba(132, 120, 120, 0.5);
+}
+
+
+:host ::ng-deep {
+  .p-progressbar {
+      height: .5rem;
+      background-color: #D8DADC;
+
+      .p-progressbar-value {
+          background-color: #607D8B;
+      }
+  }
+}

@@ -10,7 +10,8 @@
   --p-menubar-item-focus-color: black;
 }
 
-:host ::ng-deep .p-menubar-root-list .p-menubar-item:first-child .p-menubar-item-icon {
+
+:host ::ng-deep .p-menubar-root-list > .p-menubar-item:first-child .p-menubar-item-icon {
   @media (min-width: 960px) {
     color: orange; /* Cor do ícone */
     background-color: rgb(84, 84, 84); /* Cor do fundo */
@@ -20,17 +21,31 @@
   }
 }
 
-:host ::ng-deep .p-menubar-root-list .p-menubar-item:first-child .p-menubar-item-label {
+:host ::ng-deep .p-menubar-root-list > .p-menubar-item:first-child .p-menubar-item-label {
   @media (min-width: 960px) {
-    display: none;
+    display: none; /* Escondendo o rótulo */
   }
 }
 
-
-/* Estilos específicos para o menu */
+/* Ajustes para o menu */
 .user-menu {
   position: absolute;
-  top: 48x; /* Ajuste conforme necessário para o alinhamento correto */
-  right: 1px; /* Ajuste para a posição do menu */
-  z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+  z-index: 1000;
+  top: 1px;
+  left: 0;
+  width: max-content;
 }
+
+
+
+
+
+
+// :host ::ng-deep .user-menu .p-menu-list .p-menu-item:last-child:hover .p-menu-item-icon {
+//   color: rgb(241, 2, 2); /* Apenas o ícone fica vermelho */
+// }
+
+// :host ::ng-deep .user-menu .p-menu-list .p-menu-item:last-child {
+//   --p-menu-item-focus-background: rgb(146, 146, 141); /* Cor laranja para foco */
+//   --p-menu-item-focus-color: black;
+// }

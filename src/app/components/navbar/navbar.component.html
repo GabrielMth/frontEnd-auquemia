@@ -2,12 +2,14 @@
     <div class="p-grid">
       <p-menubar [model]="items">
         <ng-template pTemplate="end">
-          <button pButton icon="pi pi-user" class="p-button-text" (click)="toggleUserMenu()"></button>
+          <p-tag severity="info" value="Gabriel S |"/>
+          <button pButton icon="pi pi-user" class="p-button-text" (click)="menuLogout.toggle($event)"></button>
+          <!-- Menu de logout -->
+          <p-tieredmenu #menuLogout [model]="itemsLogout" class="user-menu" [popup]="true"></p-tieredmenu>
         </ng-template>
       </p-menubar>
     </div>
   </div>
 
 
-<!-- Menu de logout -->
-<p-menu *ngIf="userMenuVisible" [model]="itemsLogout" appendTo="body" class="user-menu"></p-menu>
+
