@@ -10,15 +10,27 @@
   --p-menubar-item-focus-color: black;
 }
 
+:host ::ng-deep .p-menubar-root-list .p-menubar-item:first-child .p-menubar-item-icon {
+  @media (min-width: 960px) {
+    color: orange; /* Cor do ícone */
+    background-color: rgb(84, 84, 84); /* Cor do fundo */
+    border-radius: 25%; /* Tornando o fundo arredondado */
+    padding: 5px; /* Aumentando o tamanho do fundo */
+    transform: scale(1.5); /* Aumentando o ícone */
+  }
+}
+
+:host ::ng-deep .p-menubar-root-list .p-menubar-item:first-child .p-menubar-item-label {
+  @media (min-width: 960px) {
+    display: none;
+  }
+}
+
+
 /* Estilos específicos para o menu */
 .user-menu {
   position: absolute;
-  top: 53px; /* Ajuste conforme necessário para o alinhamento correto */
-  right: 7px; /* Ajuste para a posição do menu */
+  top: 48x; /* Ajuste conforme necessário para o alinhamento correto */
+  right: 1px; /* Ajuste para a posição do menu */
   z-index: 1000; /* Garante que o menu fique acima de outros elementos */
-}
-
-/* Caso queira adicionar um pouco de sombra para destacar o menu */
-.user-menu .p-menu {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
