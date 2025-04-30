@@ -2,23 +2,43 @@ import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
+import { InputIconModule } from 'primeng/inputicon';
+import { IconFieldModule } from 'primeng/iconfield';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { Dialog } from 'primeng/dialog';
 
 @Component({
   selector: 'app-clientesinfo',
-  imports: [CardModule,TableModule, CommonModule],
+  imports: [CardModule, TableModule, CommonModule, InputIconModule, IconFieldModule, FormsModule, InputTextModule, ButtonModule, Dialog],
   templateUrl: './clientesinfo.component.html',
   styleUrl: './clientesinfo.component.scss'
 })
 export class ClientesinfoComponent {
 
-pessoastemporario = [
-  {codigo: '1', name: 'Gabriel', dataVencimento: '199/01/01', dataPagamento: null},
-  {codigo: '2', name: 'Gabriel', dataVencimento: 'dss', dataPagamento: null},
-  {codigo: '3', name: 'Gabriel', dataVencimento: 'dss', dataPagamento: null},
-  {codigo: '4', name: 'Gabriel', dataVencimento: 'dss', dataPagamento: null},
-  {codigo: '5', name: 'Gabriel', dataVencimento: 'dss', dataPagamento: null},
-  {codigo: '6', name: 'Gabriel', dataVencimento: 'dss', dataPagamento: null},
-  {codigo: '7', name: 'Gabriel', dataVencimento: 'dss', dataPagamento: null},
-  ]
 
+  selectedPessoa!: Pessoa;
+  visibleDialog: boolean = false;
+
+
+  pessoastemporario: Pessoa[] = [
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    // ... continua
+  ];
+
+  onRowDoubleClick(): void {
+    this.visibleDialog = true;
+  }
+
+}
+
+interface Pessoa {
+  nome: string;
+  bairro: string;
+  cep: string;
+  cpf: string;
+  contato: string;
 }

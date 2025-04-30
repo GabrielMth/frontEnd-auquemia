@@ -18,13 +18,13 @@ import { TooltipModule } from 'primeng/tooltip';
 export class LancamentoComponent {
 
   lancamentos = [
-    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: '30/06/2017', dataPagamento: null, valor: 9.55, pessoa: 'Aadaria do José'},
-    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: '30/06/2017', dataPagamento: null, valor: 4.55, pessoa: 'Tadaria do José'},
-    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: '30/06/2017', dataPagamento: null, valor: 25.55, pessoa: 'Oadaria do José'},
-    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: '30/06/2017', dataPagamento: null, valor: 4.55, pessoa: 'Padaria do José'},
-    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: '30/06/2017', dataPagamento: null, valor: 2.55, pessoa: 'Qadaria do José'},
-    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: '30/06/2017', dataPagamento: null, valor: 76.55, pessoa: 'Aadaria do José'},
-    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: '30/06/2017', dataPagamento: null, valor: 300.55, pessoa: 'Badaria do José'}
+    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5 , 30), dataPagamento: new Date(), valor: 9.55, pessoa: 'Aadaria do José'},
+    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5 , 30), dataPagamento: new Date(), valor: 4.55, pessoa: 'Tadaria do José'},
+    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5 , 30), dataPagamento: new Date(), valor: 25.55, pessoa: 'Oadaria do José'},
+    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5 , 30), dataPagamento: new Date(), valor: 4.55, pessoa: 'Padaria do José'},
+    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5 , 30), dataPagamento: new Date(), valor: 2.55, pessoa: 'Qadaria do José'},
+    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5 , 30), dataPagamento: new Date(), valor: 76.55, pessoa: 'Aadaria do José'},
+    {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5 , 30), dataPagamento: new Date(), valor: 300.55, pessoa: 'Badaria do José'}
   ]
 
   loading: boolean = false;

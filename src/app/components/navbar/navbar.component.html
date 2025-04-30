@@ -3,7 +3,7 @@
       <p-menubar [model]="items">
         <ng-template pTemplate="end">
           <p-tag severity="info" value="Gabriel S |"/>
-          <button pButton icon="pi pi-user" class="p-button-text" (click)="menuLogout.toggle($event)"></button>
+          <a pButton icon="pi pi-user" class="p-button-text" (click)="menuLogout.toggle($event)"></a>
           <!-- Menu de logout -->
           <p-tieredmenu #menuLogout [model]="itemsLogout" class="user-menu" [popup]="true"></p-tieredmenu>
         </ng-template>

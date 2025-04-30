@@ -1,9 +1,4 @@
 <div class="container">
-
-  <div class="...">
-    <h1>Lançamentos</h1>
-  </div>
-
   <div style="display: block;">
     <p-floatlabel variant="on">
       <input pInputText id="on_label" [(ngModel)]="descricao" autocomplete="off" fluid />
@@ -38,7 +33,6 @@
           [rows]="10"
           [tableStyle]="{ 'min-width': '50rem' }"
           [rowsPerPageOptions]="[5, 10, 20, 40]"
-          [scrollable]="true"
         >
           <ng-template pTemplate="header">
             <tr>
@@ -55,8 +49,8 @@
             <tr>
               <td>{{ lancamento.pessoa }}</td>
               <td>{{ lancamento.descricao }}</td>
-              <td>{{ lancamento.dataVencimento }}</td>
-              <td>{{ lancamento.dataPagamento || '-' }}</td>
+              <td>{{ lancamento.dataVencimento | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ lancamento.dataPagamento ? (lancamento.dataPagamento | date: 'dd/MM/yyyy') : '-' }}</td>
               <td>{{ lancamento.valor | currency:'BRL':'symbol':'1.2-2' }}</td>
               <td style="display: flex; gap: 0.5rem; padding: 5px;">
                 <a [raised]="true" pButton href="/algum_link" icon="pi pi-address-book" pTooltip="Editar" tooltipPosition="right" showDelay="300" hideDelay="50"></a>
