@@ -15,9 +15,10 @@
 
     <div class="inputsuptable">
       <p-iconfield>
-        <p-inputicon styleClass="pi pi-search"/>
-        <input type="text" pInputText placeholder="Buscar por nome" name="search" autocomplete="off" fluid/>
-        </p-iconfield>
+        <p-inputicon styleClass="pi pi-search" />
+        <input type="text" pInputText placeholder="Buscar por nome" name="search" autocomplete="off" fluid
+          class="busca-nome-input" />
+      </p-iconfield>
       <a href="" pButton severity="info" label="Cliente" [raised]="true" icon="pi pi-user-plus"> </a>
     </div>
 
@@ -44,47 +45,60 @@
     </p-table>
 
 
-    <p-dialog [(visible)]="visibleDialog" [modal]="true" [style]="{ width: '40rem', height: '40rem'  }">
-      <div class="container-modal">
-        <h3>Detalhes da Pessoa</h3>
+    <p-dialog [(visible)]="visibleDialog" [modal]="true" header="Detalhes do Cliente"
+      [style]="{ width: '40rem', height: '40rem' }" footer="aaaa">
+      <p-divider type="dotted" />
 
-        <div class="p-fluid">
-          <div class="p-field mb-3">
+
+      <div class="input-row">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-user"></i>
+          </p-inputgroup-addon>
+          <p-iftalabel>
+            <input pInputText id="nome" class="inputuseropen-dialog" />
             <label for="nome">Nome</label>
-            <input id="nome" />
-          </div>
+          </p-iftalabel>
+        </p-inputgroup>
+      </div>
 
-          <div class="p-field mb-3">
-            <label for="bairro">Bairro</label>
-            <input id="bairro" />
-          </div>
-
-          <div class="p-field mb-3">
-            <label for="cep">CEP</label>
-            <input id="cep" />
-          </div>
-
-          <div class="p-field mb-3">
-            <label for="cpf">CPF</label>
-            <input id="cpf" />
-          </div>
-
-          <div class="p-field mb-3">
-            <label for="contato">Contato</label>
-            <input id="contato" />
-          </div>
+      <div class="input-row two-columns">
+        <div class="input-col">
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-compass"></i>
+            </p-inputgroup-addon>
+            <p-iftalabel>
+              <input pInputText id="cidade" class="inputuseropen1-dialog" />
+              <label for="cidade">Cidade</label>
+            </p-iftalabel>
+          </p-inputgroup>
         </div>
 
-        <p-button label="Editar" icon="pi pi-pencil" />
-        <p-button label="Excluir" icon="pi pi-trash" severity="danger" />
-
-
+        <div class="input-col">
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-compass"></i>
+            </p-inputgroup-addon>
+            <p-iftalabel>
+              <input pInputText id="bairro" class="inputuseropen1-dialog" />
+              <label for="bairro">Bairro</label>
+            </p-iftalabel>
+          </p-inputgroup>
+        </div>
       </div>
 
 
-
-
+      <p-divider type="dotted" />
+      <ng-template #footer>
+        <div class="dialog-footer">
+          <p-button label="Salvar Edição" icon="pi pi-pencil" [raised]="true" />
+          <p-button label="Excluir" icon="pi pi-trash" severity="danger" [raised]="true" />
+        </div>
+      </ng-template>
     </p-dialog>
+
+
 
 
 

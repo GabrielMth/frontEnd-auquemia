@@ -11,7 +11,6 @@
 
   --p-button-info-color: black;
   --p-button-info-active-color: black(255, 16, 16);
-
 }
 
 .inputsuptable{
@@ -25,14 +24,14 @@
 
 }
 
-.p-inputtext {
+.busca-nome-input {
   max-width: 800px;
   width: 100%;
 }
 
 @media (min-width: 768px) {
-  .p-inputtext {
-    width: 600px;
+  .busca-nome-input {
+    width: 500px;
   }
 }
 
@@ -45,4 +44,67 @@
 }
 
 
+::ng-deep .p-dialog .p-dialog-header {
+  background: linear-gradient(to right, #262626, #393b3c);
+  color: white;
+  padding: 0.2rem;
+  justify-content: center;
+  position: relative;
+  border-radius: 10px;
+}
+
+::ng-deep .p-dialog .p-dialog-title {
+  flex: 1;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  margin-left: 3rem;
+}
+
+::ng-deep .p-dialog .p-dialog-header .p-dialog-close-button {
+  color: whitesmoke;
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.inputuseropen-dialog {
+  max-width: 600px;
+  height: 2rem;
+}
+
+::ng-deep .inputuseropen-dialog ~ label {
+  font-size: 0.70rem; // deixa o label menor
+  top: -0.10rem;        // ajusta a posição vertical, teste valores como -0.6rem, -0.8rem etc.
+  left: 0.75rem;       // opcional: distancia um pouco da borda do input
+  padding: 0 0.25rem;  // opcional: dá um espaço ao redor do texto
+  background: white;   // evita sobreposição com borda do input (se necessário)
+}
+
+
+::ng-deep .inputuseropen1-dialog ~ label {
+  font-size: 0.70rem;
+  top: -0.10rem;
+  left: 0.75rem;
+  padding: 0 0.25rem;
+  background: white;
+}
+
+
+.input-row {
+  margin-bottom: 1rem;
+}
+
+.two-columns {
+  display: flex;
+  gap: 1rem;
+
+  .input-col {
+    flex: 1;
+  }
+}
 

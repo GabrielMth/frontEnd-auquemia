@@ -17,6 +17,8 @@ import { TooltipModule } from 'primeng/tooltip';
 })
 export class LancamentoComponent {
 
+  loading: boolean = false;
+
   lancamentos = [
     {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5 , 30), dataPagamento: new Date(), valor: 9.55, pessoa: 'Aadaria do José'},
     {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5 , 30), dataPagamento: new Date(), valor: 4.55, pessoa: 'Tadaria do José'},
@@ -27,13 +29,11 @@ export class LancamentoComponent {
     {tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5 , 30), dataPagamento: new Date(), valor: 300.55, pessoa: 'Badaria do José'}
   ]
 
-  loading: boolean = false;
+  load() {
+      this.loading = true;
 
-    load() {
-        this.loading = true;
-
-        setTimeout(() => {
-            this.loading = false
+      setTimeout(() => {
+        this.loading = false
         }, 350);
     }
 

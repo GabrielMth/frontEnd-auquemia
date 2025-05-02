@@ -8,10 +8,15 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { Dialog } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { IftaLabelModule } from 'primeng/iftalabel';
+
 
 @Component({
   selector: 'app-clientesinfo',
-  imports: [CardModule, TableModule, CommonModule, InputIconModule, IconFieldModule, FormsModule, InputTextModule, ButtonModule, Dialog],
+  imports: [CardModule, TableModule, CommonModule, InputIconModule, IconFieldModule, FormsModule, InputTextModule, ButtonModule, Dialog, DividerModule, InputGroupModule, InputGroupAddonModule, IftaLabelModule],
   templateUrl: './clientesinfo.component.html',
   styleUrl: './clientesinfo.component.scss'
 })
