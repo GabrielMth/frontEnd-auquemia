@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
@@ -19,14 +19,18 @@ import { TextareaModule } from 'primeng/textarea';
 
 @Component({
   selector: 'app-newlancamento',
-  imports: [Dialog,IftaLabelModule,FloatLabel,InputGroupModule,InputGroupAddonModule,DividerModule,DropdownModule,ButtonModule,AutoCompleteModule,FormsModule,InputTextModule,IconFieldModule,InputIconModule,CommonModule
-  ,TableModule,CardModule, TextareaModule],
+  imports: [Dialog, IftaLabelModule, FloatLabel, InputGroupModule, InputGroupAddonModule, DividerModule, DropdownModule, ButtonModule, AutoCompleteModule, FormsModule, InputTextModule, IconFieldModule, InputIconModule, CommonModule
+    , TableModule, CardModule, TextareaModule],
   templateUrl: './newlancamento.component.html',
   styleUrl: './newlancamento.component.scss'
 })
 export class NewlancamentoComponent {
-  visibleDialog = true;
   pessoaSelecionada: any;
+  visibleDialog: boolean = true;
+
+  @Output() closed = new EventEmitter<void>();
+
+
 
 
   pessoas: any[] = [
@@ -47,6 +51,10 @@ export class NewlancamentoComponent {
     this.pessoasFiltradas = this.pessoas.filter(p =>
       p.nome.toLowerCase().includes(query)
     );
+  }
+
+  onDialogHide() {
+    this.closed.emit();
   }
 
 

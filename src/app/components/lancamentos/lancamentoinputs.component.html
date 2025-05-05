@@ -23,7 +23,8 @@
 
       <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem; margin-top: 0.5rem;">
         <p-button [raised]="true" label="Pesquisar" icon="pi pi-search" [loading]="loading" (onClick)="load()" />
-        <a [raised]="true" pButton href="/algum_link" label="Novo Lançamento" icon="pi pi-plus"></a>
+        <p-button label="Novo Lançamento" icon="pi pi-plus" (onClick)="abrirDialog()" [raised]="true">
+        </p-button>
       </div>
 
       <div class="ui-g-12">
@@ -65,4 +66,11 @@
 
     </div>
   </p-card>
+
+
+
+
+  <app-newlancamento *ngIf="exibirDialog" (closed)="aoFecharDialog()"></app-newlancamento>
+
+
 </div>
