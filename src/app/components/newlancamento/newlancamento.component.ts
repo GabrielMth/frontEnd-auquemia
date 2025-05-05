@@ -34,6 +34,9 @@ export class NewlancamentoComponent {
     { nome: 'João Santos' },
     { nome: 'Carlos Almeida' },
     { nome: 'Ana Paula' },
+    { nome: 'Maria Silva' },
+    { nome: 'Maria Silva' },
+    { nome: 'Maria Silva' },
   ];
 
 

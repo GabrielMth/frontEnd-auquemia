@@ -60,3 +60,36 @@
   color: rgb(255, 255, 255);
   margin-left: 3rem;
 }
+
+
+
+
+
+.searchperson {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+
+  ::ng-deep .p-autocomplete {
+    width: 100%;
+  }
+
+  ::ng-deep .p-autocomplete-input {
+    width: 100%;
+    height: 3rem;
+    font-size: 1.05rem;
+    padding-left: 1rem;
+  }
+
+
+  ::ng-deep .p-autocomplete-item {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+  }
+
+  ::ng-deep .p-autocomplete-item i {
+    font-size: 0.5rem;
+  }
+}
+

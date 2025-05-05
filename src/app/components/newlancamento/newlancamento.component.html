@@ -79,9 +79,9 @@
         (completeMethod)="filtrarPessoas($event)" field="nome" placeholder="Digite o nome da pessoa"
         dropdownIcon="pi pi-users" [minLength]="1">
         <ng-template let-pessoa pTemplate="item">
-          <div class="p-d-flex p-ai-center">
-            <i class="pi pi-user" style="margin-right: .5rem;"></i>
-            <div>{{ pessoa.nome }}</div>
+          <div>
+            <i class="pi pi-user"></i>
+            {{ pessoa.nome }}
           </div>
         </ng-template>
       </p-autocomplete>
@@ -102,8 +102,9 @@
 
 
     <ng-template #footer>
+
       <div class="dialog-footer">
-        <p-button label="Salvar Edição" icon="pi pi-pencil" [raised]="true" />
+        <p-button label="OK" icon="pi pi-pencil" [raised]="true" severity="warn"/>
       </div>
     </ng-template>
   </p-dialog>
