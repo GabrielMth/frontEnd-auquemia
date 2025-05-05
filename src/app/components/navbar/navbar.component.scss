@@ -13,21 +13,20 @@
 
 :host ::ng-deep .p-menubar-root-list > .p-menubar-item:first-child .p-menubar-item-icon {
   @media (min-width: 960px) {
-    color: orange; /* Cor do ícone */
-    background-color: rgb(84, 84, 84); /* Cor do fundo */
-    border-radius: 25%; /* Tornando o fundo arredondado */
-    padding: 5px; /* Aumentando o tamanho do fundo */
-    transform: scale(1.5); /* Aumentando o ícone */
+    color: orange;
+    background-color: rgb(84, 84, 84);
+    border-radius: 25%;
+    padding: 5px;
+    transform: scale(1.5);
   }
 }
 
 :host ::ng-deep .p-menubar-root-list > .p-menubar-item:first-child .p-menubar-item-label {
   @media (min-width: 960px) {
-    display: none; /* Escondendo o rótulo */
+    display: none;
   }
 }
 
-/* Ajustes para o menu */
 .user-menu {
   position: absolute;
   z-index: 1000;

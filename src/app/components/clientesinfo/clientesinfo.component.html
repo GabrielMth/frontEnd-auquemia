@@ -1,17 +1,8 @@
 <div class="container">
-  <p-card class="cardclientes" header="Clientes">
-    <p class="m-0">
-      Lorem ipsum dolor sit amet...
-      Lorem ipsum dolor sit amet...
-      Lorem ipsum dolor sit amet...
-      Lorem ipsum dolor sit amet...
-      Lorem ipsum dolor sit amet...
-      Lorem ipsum dolor sit amet...
-      Lorem ipsum dolor sit amet...
-      Lorem ipsum dolor sit amet...
-      Lorem ipsum dolor sit amet...
+  <p-card class="cardclientes" header="Clientes |">
+    <p>Realize pesquisas, edições, colete informações sobre os clientes,
+      para editar selecione um registro dentro da tabela.
     </p>
-
 
     <div class="inputsuptable">
       <p-iconfield>
@@ -46,7 +37,7 @@
 
 
     <p-dialog [(visible)]="visibleDialog" [modal]="true" header="Detalhes do Cliente"
-      [style]="{ width: '40rem', height: '40rem' }" footer="aaaa">
+      [style]="{ width: '30rem', height: '35rem' }">
       <p-divider type="dotted" />
 
 
@@ -55,10 +46,10 @@
           <p-inputgroup-addon>
             <i class="pi pi-user"></i>
           </p-inputgroup-addon>
-          <p-iftalabel>
-            <input pInputText id="nome" class="inputuseropen-dialog" />
+          <p-floatlabel variant="on">
+            <input pInputText id="nome" autocomplete="off" />
             <label for="nome">Nome</label>
-          </p-iftalabel>
+          </p-floatlabel>
         </p-inputgroup>
       </div>
 
@@ -66,15 +57,29 @@
         <div class="input-col">
           <p-inputgroup>
             <p-inputgroup-addon>
-              <i class="pi pi-compass"></i>
+              <i class="pi pi-address-book"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="cidade" class="inputuseropen1-dialog" />
-              <label for="cidade">Cidade</label>
+              <input pInputText id="cpf" />
+              <label for="cpf">CPF</label>
             </p-iftalabel>
           </p-inputgroup>
         </div>
 
+        <div class="input-col">
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-map-marker"></i>
+            </p-inputgroup-addon>
+            <p-iftalabel>
+              <input pInputText id="cep" />
+              <label for="cep">CEP</label>
+            </p-iftalabel>
+          </p-inputgroup>
+        </div>
+      </div>
+
+      <div class="input-row two-columns">
         <div class="input-col">
           <p-inputgroup>
             <p-inputgroup-addon>
@@ -86,14 +91,56 @@
             </p-iftalabel>
           </p-inputgroup>
         </div>
+
+        <div class="input-col">
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-building"></i>
+            </p-inputgroup-addon>
+            <p-iftalabel>
+              <input pInputText id="cidade" class="inputuseropen1-dialog" />
+              <label for="cidade">Cidade</label>
+            </p-iftalabel>
+          </p-inputgroup>
+        </div>
+      </div>
+
+      <p-divider type="dotted" />
+
+      <div class="input-row two-columns">
+        <div class="input-col">
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-phone"></i>
+            </p-inputgroup-addon>
+            <p-iftalabel>
+              <input pInputText id="celular" class="inputuseropen1-dialog" />
+              <label for="celular">Celular</label>
+            </p-iftalabel>
+          </p-inputgroup>
+        </div>
+
+        <div class="input-col">
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-phone"></i>
+            </p-inputgroup-addon>
+            <p-iftalabel>
+              <input pInputText id="telefone" class="inputuseropen1-dialog" />
+              <label for="telefone">Telefone</label>
+            </p-iftalabel>
+          </p-inputgroup>
+        </div>
       </div>
 
 
       <p-divider type="dotted" />
+      <p-dropdown [(ngModel)]="status" [options]="statusOptions" optionLabel="label" placeholder="Selecione o status">
+      </p-dropdown>
+
       <ng-template #footer>
         <div class="dialog-footer">
           <p-button label="Salvar Edição" icon="pi pi-pencil" [raised]="true" />
-          <p-button label="Excluir" icon="pi pi-trash" severity="danger" [raised]="true" />
         </div>
       </ng-template>
     </p-dialog>

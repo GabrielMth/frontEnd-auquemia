@@ -7,13 +7,16 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
+import { CardModule } from 'primeng/card';
+
 
 
 @Component({
     selector: 'formulariotela',
     templateUrl: './lancamentoinputs.component.html',
     standalone: true,
-    imports: [FormsModule, DatePicker, FloatLabel, InputTextModule, ButtonModule, TableModule,CommonModule,TooltipModule]
+    imports: [FormsModule, DatePicker, FloatLabel, InputTextModule, ButtonModule, TableModule,CommonModule,TooltipModule,CardModule],
+    styleUrl: './lancamentoinputs.component.scss'
 })
 export class LancamentoComponent {
 

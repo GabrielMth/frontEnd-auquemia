@@ -1,69 +1,68 @@
 <div class="container">
-  <div style="display: block;">
-    <p-floatlabel variant="on">
-      <input pInputText id="on_label" [(ngModel)]="descricao" autocomplete="off" fluid />
-      <label for="on_label">Descrição</label>
-    </p-floatlabel>
-
-    <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
-      <p-floatlabel variant="on" style="flex: 0.2;">
-        <p-datepicker [(ngModel)]="dataInicio" inputId="data_inicio" showIcon iconDisplay="input"
-          [showButtonBar]="true" />
-        <label for="data_inicio">Data</label>
+  <p-card class="cardlanc" header="Lançamentos |">
+    <div style="display: block;">
+      <p-floatlabel variant="on">
+        <input pInputText id="on_label" [(ngModel)]="descricao" autocomplete="off" fluid />
+        <label for="on_label">Descrição</label>
       </p-floatlabel>
 
-      <span>Até</span>
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+        <p-floatlabel variant="on" style="flex: 0.2;">
+          <p-datepicker [(ngModel)]="dataInicio" inputId="data_inicio" showIcon iconDisplay="input"
+            [showButtonBar]="true" />
+          <label for="data_inicio">Data</label>
+        </p-floatlabel>
 
-      <p-floatlabel variant="on" style="flex: 0.2;">
-        <p-datepicker [(ngModel)]="dataFim" inputId="data_fim" showIcon iconDisplay="input" [showButtonBar]="true" />
-        <label for="data_fim">Data</label>
-      </p-floatlabel>
-    </div>
+        <span>Até</span>
 
-    <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem; margin-top: 0.5rem;">
+        <p-floatlabel variant="on" style="flex: 0.2;">
+          <p-datepicker [(ngModel)]="dataFim" inputId="data_fim" showIcon iconDisplay="input" [showButtonBar]="true" />
+          <label for="data_fim">Data</label>
+        </p-floatlabel>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem; margin-top: 0.5rem;">
         <p-button [raised]="true" label="Pesquisar" icon="pi pi-search" [loading]="loading" (onClick)="load()" />
         <a [raised]="true" pButton href="/algum_link" label="Novo Lançamento" icon="pi pi-plus"></a>
-    </div>
-
-    <div class="ui-g-12">
-      <div class="card">
-        <p-table
-          [value]="lancamentos"
-          [paginator]="true"
-          [rows]="10"
-          [tableStyle]="{ 'min-width': '50rem' }"
-          [rowsPerPageOptions]="[5, 10, 20, 40]"
-        >
-          <ng-template pTemplate="header">
-            <tr>
-              <th pSortableColumn="pessoa" style="width:20%">Pessoa <p-sortIcon field="pessoa"/></th>
-              <th style="width:20%">Descrição</th>
-              <th style="width:20%">Vencimento</th>
-              <th style="width:20%">Pagamento</th>
-              <th pSortableColumn="valor" style="width:20%">Valor <p-sortIcon field="valor"/></th>
-              <th style="width:20%">Ações</th>
-            </tr>
-          </ng-template>
-
-          <ng-template pTemplate="body" let-lancamento>
-            <tr>
-              <td>{{ lancamento.pessoa }}</td>
-              <td>{{ lancamento.descricao }}</td>
-              <td>{{ lancamento.dataVencimento | date: 'dd/MM/yyyy' }}</td>
-              <td>{{ lancamento.dataPagamento ? (lancamento.dataPagamento | date: 'dd/MM/yyyy') : '-' }}</td>
-              <td>{{ lancamento.valor | currency:'BRL':'symbol':'1.2-2' }}</td>
-              <td style="display: flex; gap: 0.5rem; padding: 5px;">
-                <a [raised]="true" pButton href="/algum_link" icon="pi pi-address-book" pTooltip="Editar" tooltipPosition="right" showDelay="300" hideDelay="50"></a>
-                <a [raised]="true" severity="danger" pButton href="/algum_link" icon="pi pi-trash" pTooltip="Remover" tooltipPosition="right" showDelay="300" hideDelay="50"></a>
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
       </div>
+
+      <div class="ui-g-12">
+        <div class="card">
+          <p-table [value]="lancamentos" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }"
+            [rowsPerPageOptions]="[5, 10, 20, 40]">
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="pessoa" style="width:20%">Pessoa <p-sortIcon field="pessoa" /></th>
+                <th style="width:20%">Descrição</th>
+                <th style="width:20%">Vencimento</th>
+                <th style="width:20%">Pagamento</th>
+                <th pSortableColumn="valor" style="width:20%">Valor <p-sortIcon field="valor" /></th>
+                <th style="width:20%">Ações</th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-lancamento>
+              <tr>
+                <td>{{ lancamento.pessoa }}</td>
+                <td>{{ lancamento.descricao }}</td>
+                <td>{{ lancamento.dataVencimento | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ lancamento.dataPagamento ? (lancamento.dataPagamento | date: 'dd/MM/yyyy') : '-' }}</td>
+                <td>{{ lancamento.valor | currency:'BRL':'symbol':'1.2-2' }}</td>
+                <td style="display: flex; gap: 0.5rem; padding: 5px;">
+                  <a [raised]="true" pButton href="/algum_link" icon="pi pi-address-book" pTooltip="Editar"
+                    tooltipPosition="right" showDelay="300" hideDelay="50"></a>
+                  <a [raised]="true" severity="danger" pButton href="/algum_link" icon="pi pi-trash" pTooltip="Remover"
+                    tooltipPosition="right" showDelay="300" hideDelay="50"></a>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+
+
+
+
     </div>
-
-
-
-
-  </div>
+  </p-card>
 </div>

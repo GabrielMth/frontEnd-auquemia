@@ -12,22 +12,86 @@ import { DividerModule } from 'primeng/divider';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { IftaLabelModule } from 'primeng/iftalabel';
+import { FloatLabel } from 'primeng/floatlabel';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @Component({
   selector: 'app-clientesinfo',
-  imports: [CardModule, TableModule, CommonModule, InputIconModule, IconFieldModule, FormsModule, InputTextModule, ButtonModule, Dialog, DividerModule, InputGroupModule, InputGroupAddonModule, IftaLabelModule],
+  imports: [CardModule, TableModule, CommonModule, InputIconModule, IconFieldModule, FormsModule,
+  InputTextModule, ButtonModule, Dialog, DividerModule, InputGroupModule, InputGroupAddonModule,
+  IftaLabelModule, FloatLabel, DropdownModule],
   templateUrl: './clientesinfo.component.html',
-  styleUrl: './clientesinfo.component.scss'
+  styleUrl: './clientesinfo.component.scss',
 })
 export class ClientesinfoComponent {
 
-
+  status: boolean = true;
   selectedPessoa!: Pessoa;
   visibleDialog: boolean = false;
 
 
   pessoastemporario: Pessoa[] = [
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
+    { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
     { nome: 'Gabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
     { nome: 'Labriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
     { nome: 'Kabriel', bairro: 'Nova-Assis', cep: '19803-450', cpf: '511.948.098-55', contato: '(18)997287085' },
@@ -38,7 +102,14 @@ export class ClientesinfoComponent {
     this.visibleDialog = true;
   }
 
+
+  statusOptions = [
+    { label: 'Ativo', value: true },
+    { label: 'Inativo', value: false }
+  ];
+
 }
+
 
 interface Pessoa {
   nome: string;
