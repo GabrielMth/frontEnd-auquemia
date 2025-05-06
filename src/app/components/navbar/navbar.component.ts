@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
       },
       {
         label: 'Relatórios',
-        icon: 'pi pi-search',
+        icon: 'pi pi-print',
         items: [
           {
             label: 'Components',
@@ -62,7 +62,7 @@ export class NavbarComponent implements OnInit {
       },
       {
         label: 'Contas á Receber',
-        icon: 'pi pi-envelope'
+        icon: 'pi pi-money-bill'
       },
     ]
 
