@@ -93,3 +93,13 @@
   }
 }
 
+
+
+::ng-deep .p-confirmdialog-message {
+  margin-top: 15px; /* Ajuste o valor conforme necessário */
+}
+
+::ng-deep .p-confirmdialog-icon {
+  margin-top: 15px;
+  --p-confirmdialog-icon-color: orangered;
+}

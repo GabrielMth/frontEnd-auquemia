@@ -16,17 +16,27 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { SelectModule } from 'primeng/select';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { TextareaModule } from 'primeng/textarea';
+import { TagModule } from 'primeng/tag';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialog } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-newlancamento',
-  imports: [Dialog, IftaLabelModule, FloatLabel, InputGroupModule, InputGroupAddonModule, DividerModule, SelectModule, ButtonModule, AutoCompleteModule, FormsModule, InputTextModule, IconFieldModule, InputIconModule, CommonModule
-    , TableModule, CardModule, TextareaModule],
+  imports: [Dialog, IftaLabelModule, FloatLabel, InputGroupModule, InputGroupAddonModule,
+            DividerModule, SelectModule, ButtonModule, AutoCompleteModule, FormsModule,
+            InputTextModule, IconFieldModule, InputIconModule, CommonModule, TableModule,
+            CardModule, TextareaModule, TagModule, ToastModule, ConfirmDialog],
   templateUrl: './newlancamento.component.html',
-  styleUrl: './newlancamento.component.scss'
+  styleUrl: './newlancamento.component.scss',
+  providers: [ConfirmationService, MessageService]
 })
 export class NewlancamentoComponent {
-  pessoaSelecionada: any;
 
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {}
+
+
+  pessoaSelecionada: any;
 
   @Input() visibleDialog: boolean = false;
   @Output() closed = new EventEmitter<void>();
@@ -34,7 +44,7 @@ export class NewlancamentoComponent {
 
 
   pessoas: any[] = [
-    { nome: 'Maria Silva' },
+    { nome: 'Maria Silva', cpf: '511.948.098-55' },
     { nome: 'João Santos' },
     { nome: 'Carlos Almeida' },
     { nome: 'Ana Paula' },
@@ -49,7 +59,8 @@ export class NewlancamentoComponent {
   filtrarPessoas(event: any) {
     const query = event.query.toLowerCase();
     this.pessoasFiltradas = this.pessoas.filter(p =>
-      p.nome.toLowerCase().includes(query)
+      p.nome.toLowerCase().includes(query) ||
+      (p.cpf && p.cpf.toLowerCase().includes(query))
     );
   }
 
@@ -57,5 +68,32 @@ export class NewlancamentoComponent {
     this.closed.emit();
   }
 
+
+  confirmarLancamento() {
+    this.confirmationService.confirm({
+      message: 'Você tem certeza que deseja realizar o lançamento?',
+      header: 'Confirmar Lançamento',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Cancelar',
+      acceptButtonStyleClass: 'p-button-success',
+      rejectButtonStyleClass: 'p-button-secondary',
+      accept: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Lançamento Confirmado',
+          detail: 'O lançamento foi salvo com sucesso.'
+        });
+        // Aqui você pode salvar os dados ou fechar o diálogo
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Ação Cancelada',
+          detail: 'O lançamento não foi salvo.'
+        });
+      }
+    });
+  }
 
 }

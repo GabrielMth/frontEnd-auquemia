@@ -1,101 +1,113 @@
 <div class="container">
+
+  <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
   <p-dialog [(visible)]="visibleDialog" [modal]="true" header="Novo Lançamento"
-    [style]="{ width: '50rem', height: '50rem' }" (onHide)="fecharDialog()" >
+    [style]="{ width: '50rem', height: '50rem' }" (onHide)="fecharDialog()">
 
     <p-divider type="dotted" />
 
     <form>
-    <div class="form-grid">
+      <div class="form-grid">
 
-      <!-- Vencimento / Recebimento -->
-      <div class="row two-fields">
-        <div class="field-col">
-          <p-inputgroup>
-            <p-inputgroup-addon>
-              <i class="pi pi-calendar"></i>
-            </p-inputgroup-addon>
-            <p-iftaLabel>
-              <input pInputText id="vencimento" />
-              <label for="vencimento">Vencimento</label>
-            </p-iftaLabel>
-          </p-inputgroup>
-        </div>
-
-        <div class="field-col">
-          <p-inputgroup>
-            <p-inputgroup-addon>
-              <i class="pi pi-calendar"></i>
-            </p-inputgroup-addon>
-            <p-iftaLabel>
-              <input pInputText id="recebimento" />
-              <label for="recebimento">Recebimento</label>
-            </p-iftaLabel>
-          </p-inputgroup>
-        </div>
-      </div>
-
-      <!-- Descrição / Valor -->
-      <div class="row descricao-valor">
-        <div class="descricao-col">
-          <p-inputgroup>
-            <p-inputgroup-addon>
-              <i class="pi pi-clipboard"></i>
-            </p-inputgroup-addon>
-            <p-iftalabel>
-              <input pInputText id="descricao" />
-              <label for="descricao">Descrição</label>
-            </p-iftalabel>
-          </p-inputgroup>
-        </div>
-
-        <div class="valor-col">
-          <p-inputgroup>
-            <p-inputgroup-addon>
-              <i class="pi pi-dollar"></i>
-            </p-inputgroup-addon>
-            <p-iftalabel>
-              <input pInputText id="valor" />
-              <label for="valor">Valor R$</label>
-            </p-iftalabel>
-          </p-inputgroup>
-        </div>
-      </div>
-
-
-
-    </div>
-
-
-
-    <p-divider type="dotted" />
-
-
-    <p-select optionLabel="label" placeholder="Categoria">
-    </p-select>
-
-    <p-divider type="dotted" />
-
-    <div class="searchperson">
-      <p-autocomplete [(ngModel)]="pessoaSelecionada" [suggestions]="pessoasFiltradas"
-        (completeMethod)="filtrarPessoas($event)" field="nome" placeholder="Digite o nome da pessoa"
-        dropdownIcon="pi pi-users" [minLength]="1">
-        <ng-template let-pessoa pTemplate="item">
-          <div>
-            <i class="pi pi-user"></i>
-            {{ pessoa.nome }}
+        <!-- Vencimento / Recebimento -->
+        <div class="row two-fields">
+          <div class="field-col">
+            <p-inputgroup>
+              <p-inputgroup-addon>
+                <i class="pi pi-calendar"></i>
+              </p-inputgroup-addon>
+              <p-iftaLabel>
+                <input pInputText id="vencimento" />
+                <label for="vencimento">Vencimento</label>
+              </p-iftaLabel>
+            </p-inputgroup>
           </div>
-        </ng-template>
-      </p-autocomplete>
-    </div>
 
-    <div>
-      <p-floatlabel variant="in">
-        <textarea pTextarea id="observacao" rows="6" cols="30" style="resize: none; width: 100%; height: auto;"
-          class="h-full"></textarea>
-        <label for="observacao">Observação</label>
-      </p-floatlabel>
-    </div>
-  </form>
+          <div class="field-col">
+            <p-inputgroup>
+              <p-inputgroup-addon>
+                <i class="pi pi-calendar"></i>
+              </p-inputgroup-addon>
+              <p-iftaLabel>
+                <input pInputText id="recebimento" />
+                <label for="recebimento">Recebimento</label>
+              </p-iftaLabel>
+            </p-inputgroup>
+          </div>
+        </div>
+
+        <!-- Descrição / Valor -->
+        <div class="row descricao-valor">
+          <div class="descricao-col">
+            <p-inputgroup>
+              <p-inputgroup-addon>
+                <i class="pi pi-clipboard"></i>
+              </p-inputgroup-addon>
+              <p-iftalabel>
+                <input pInputText id="descricao" />
+                <label for="descricao">Descrição</label>
+              </p-iftalabel>
+            </p-inputgroup>
+          </div>
+
+          <div class="valor-col">
+            <p-inputgroup>
+              <p-inputgroup-addon>
+                <i class="pi pi-dollar"></i>
+              </p-inputgroup-addon>
+              <p-iftalabel>
+                <input pInputText id="valor" placeholder="0,00" />
+                <label for="valor">Valor R$</label>
+              </p-iftalabel>
+            </p-inputgroup>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+      <p-divider type="dotted" />
+
+
+      <p-select optionLabel="label" placeholder="Categoria">
+      </p-select>
+
+      <p-divider type="dotted" />
+
+      <div class="searchperson">
+        <p-autocomplete [(ngModel)]="pessoaSelecionada" [suggestions]="pessoasFiltradas"
+          (completeMethod)="filtrarPessoas($event)" field="nome" placeholder="Digite o nome da pessoa ou CPF"
+          dropdownIcon="pi pi-users" [minLength]="1">
+          <ng-template let-pessoa pTemplate="item">
+            <div class="flex items-center gap-2">
+              <i class="pi pi-user"></i>
+              <span> {{ pessoa.nome }} - </span>
+
+              <p-tag *ngIf="pessoa.cpf; else cpfNaoInformado" [value]="'CPF: ' + pessoa.cpf" severity="success">
+              </p-tag>
+
+              <ng-template #cpfNaoInformado>
+                <p-tag value="CPF: Não Informado" severity="danger">
+                </p-tag>
+              </ng-template>
+            </div>
+          </ng-template>
+
+        </p-autocomplete>
+      </div>
+
+      <div>
+        <p-floatlabel variant="in">
+          <textarea pTextarea id="observacao" rows="6" cols="30" style="resize: none; width: 100%; height: auto;"
+            class="h-full"></textarea>
+          <label for="observacao">Observação</label>
+        </p-floatlabel>
+      </div>
+    </form>
 
 
 
@@ -106,7 +118,8 @@
     <ng-template #footer>
 
       <div class="dialog-footer">
-        <p-button label="OK" icon="pi pi-save" [raised]="true" severity="warn" />
+        <p-button label="Salvar" icon="pi pi-save" (onClick)="confirmarLancamento()" severity="warn" [raised]="true">
+        </p-button>
       </div>
     </ng-template>
   </p-dialog>
