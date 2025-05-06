@@ -22,6 +22,7 @@ import { NewlancamentoComponent } from '../newlancamento/newlancamento.component
 export class LancamentoComponent {
 
   loading: boolean = false;
+
   exibirDialog = false;
 
   descricao: string | undefined;

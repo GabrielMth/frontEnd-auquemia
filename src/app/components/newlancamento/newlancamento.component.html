@@ -1,9 +1,10 @@
 <div class="container">
   <p-dialog [(visible)]="visibleDialog" [modal]="true" header="Novo Lançamento"
-    [style]="{ width: '50rem', height: '50rem' }" (onHide)="onDialogHide()">
+    [style]="{ width: '50rem', height: '50rem' }" (onHide)="fecharDialog()" >
 
     <p-divider type="dotted" />
 
+    <form>
     <div class="form-grid">
 
       <!-- Vencimento / Recebimento -->
@@ -38,7 +39,7 @@
         <div class="descricao-col">
           <p-inputgroup>
             <p-inputgroup-addon>
-              <i class="pi pi-map-marker"></i>
+              <i class="pi pi-clipboard"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
               <input pInputText id="descricao" />
@@ -50,7 +51,7 @@
         <div class="valor-col">
           <p-inputgroup>
             <p-inputgroup-addon>
-              <i class="pi pi-compass"></i>
+              <i class="pi pi-dollar"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
               <input pInputText id="valor" />
@@ -69,8 +70,8 @@
     <p-divider type="dotted" />
 
 
-    <p-dropdown optionLabel="label" placeholder="Categoria">
-    </p-dropdown>
+    <p-select optionLabel="label" placeholder="Categoria">
+    </p-select>
 
     <p-divider type="dotted" />
 
@@ -94,6 +95,7 @@
         <label for="observacao">Observação</label>
       </p-floatlabel>
     </div>
+  </form>
 
 
 

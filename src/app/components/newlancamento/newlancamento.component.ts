@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
@@ -13,23 +13,23 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { FloatLabel } from 'primeng/floatlabel';
-import { DropdownModule } from 'primeng/dropdown';
+import { SelectModule } from 'primeng/select';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { TextareaModule } from 'primeng/textarea';
 
 @Component({
   selector: 'app-newlancamento',
-  imports: [Dialog, IftaLabelModule, FloatLabel, InputGroupModule, InputGroupAddonModule, DividerModule, DropdownModule, ButtonModule, AutoCompleteModule, FormsModule, InputTextModule, IconFieldModule, InputIconModule, CommonModule
+  imports: [Dialog, IftaLabelModule, FloatLabel, InputGroupModule, InputGroupAddonModule, DividerModule, SelectModule, ButtonModule, AutoCompleteModule, FormsModule, InputTextModule, IconFieldModule, InputIconModule, CommonModule
     , TableModule, CardModule, TextareaModule],
   templateUrl: './newlancamento.component.html',
   styleUrl: './newlancamento.component.scss'
 })
 export class NewlancamentoComponent {
   pessoaSelecionada: any;
-  visibleDialog: boolean = true;
 
+
+  @Input() visibleDialog: boolean = false;
   @Output() closed = new EventEmitter<void>();
-
 
 
 
@@ -53,7 +53,7 @@ export class NewlancamentoComponent {
     );
   }
 
-  onDialogHide() {
+  fecharDialog() {
     this.closed.emit();
   }
 
