@@ -44,7 +44,7 @@
 }
 
 
-::ng-deep .p-dialog .p-dialog-header {
+:host ::ng-deep .p-dialog .p-dialog-header {
   background: linear-gradient(to right, #262626, #393b3c);
   color: white;
   padding: 0.2rem;
@@ -53,7 +53,7 @@
   border-radius: 10px;
 }
 
-::ng-deep .p-dialog .p-dialog-title {
+:host ::ng-deep .p-dialog .p-dialog-title {
   flex: 1;
   text-align: center;
   font-size: 1.1rem;
@@ -62,7 +62,7 @@
   margin-left: 3rem;
 }
 
-::ng-deep .p-dialog .p-dialog-header .p-dialog-close-button {
+:host ::ng-deep .p-dialog .p-dialog-header .p-dialog-close-button {
   color: whitesmoke;
 }
 

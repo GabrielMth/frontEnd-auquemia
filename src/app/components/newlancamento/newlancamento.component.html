@@ -17,9 +17,10 @@
               <p-inputgroup-addon>
                 <i class="pi pi-calendar"></i>
               </p-inputgroup-addon>
-              <p-iftaLabel>
-                <input pInputText id="vencimento" />
-                <label for="vencimento">Vencimento</label>
+              <p-iftaLabel variant="on">
+                <p-datepicker [(ngModel)]="dataVencimento" inputId="dataVencimento" [showButtonBar]="true"
+                  dateFormat="dd/mm/yy" class="custom-datepicker" />
+                <label for="dataVencimento">Vencimento</label>
               </p-iftaLabel>
             </p-inputgroup>
           </div>
@@ -29,9 +30,10 @@
               <p-inputgroup-addon>
                 <i class="pi pi-calendar"></i>
               </p-inputgroup-addon>
-              <p-iftaLabel>
-                <input pInputText id="recebimento" />
-                <label for="recebimento">Recebimento</label>
+              <p-iftaLabel variant="on">
+                <p-datepicker [(ngModel)]="dataRecebimento" inputId="dataRecebimento" [showButtonBar]="true"
+                  dateFormat="dd/mm/yy" class="custom-datepicker" />
+                <label for="dataRecebimento">Recebimento</label>
               </p-iftaLabel>
             </p-inputgroup>
           </div>
@@ -63,8 +65,6 @@
             </p-inputgroup>
           </div>
         </div>
-
-
 
       </div>
 

@@ -2,28 +2,34 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+}
 
-  .row {
-    display: flex;
-    gap: 0.5rem;
-  }
+.row {
+  display: flex;
+  width: 100%;
+}
 
-  .two-fields {
-    .field-col {
-      flex: 1;
-      max-width: 9rem;
-    }
-  }
+/* Aplica gap reduzido apenas entre Vencimento e Recebimento */
+.row.two-fields {
+  gap: 0.5rem; /* Pequeno espaço entre os dois campos */
+}
 
-  .descricao-valor {
-    .descricao-col {
-      flex: 1;
-    }
 
-    .valor-col {
-      width: 10rem;
-    }
-  }
+
+
+
+.descricao-valor {
+  display: flex;
+  gap: 0.5rem; /* Espaço entre descrição e valor */
+}
+
+.descricao-col {
+  flex: 1;
+}
+
+.valor-col {
+  width: 10rem;
 }
 
 
@@ -62,19 +68,16 @@
 }
 
 
-
-
-
 .searchperson {
   width: 100%;
   max-width: 100%;
   margin-bottom: 1rem;
 
-  ::ng-deep .p-autocomplete {
+  :host ::ng-deep .p-autocomplete {
     width: 100%;
   }
 
-  ::ng-deep .p-autocomplete-input {
+  :host ::ng-deep .p-autocomplete-input {
     width: 100%;
     height: 3rem;
     font-size: 1.05rem;
@@ -82,24 +85,46 @@
   }
 
 
-  ::ng-deep .p-autocomplete-item {
+  :host ::ng-deep .p-autocomplete-item {
     display: flex;
     align-items: center;
     gap: 0.1rem;
   }
 
-  ::ng-deep .p-autocomplete-item i {
+  :host ::ng-deep .p-autocomplete-item i {
     font-size: 0.5rem;
   }
 }
 
 
-
+//dialog
 ::ng-deep .p-confirmdialog-message {
-  margin-top: 15px; /* Ajuste o valor conforme necessário */
+  margin-top: 15px;
 }
 
 ::ng-deep .p-confirmdialog-icon {
   margin-top: 15px;
   --p-confirmdialog-icon-color: orangered;
+}
+
+
+:host ::ng-deep .custom-datepicker .p-datepicker-input {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: 100px;
+}
+
+
+
+
+@media (max-width: 500px) {
+  .descricao-valor {
+    flex-direction: column;
+  }
+
+  .valor-col {
+    width: 40%;
+  }
 }

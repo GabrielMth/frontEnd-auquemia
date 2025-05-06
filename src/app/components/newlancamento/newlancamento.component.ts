@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input, ViewChild  } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
@@ -20,28 +20,30 @@ import { TagModule } from 'primeng/tag';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialog } from 'primeng/confirmdialog';
+import { DatePickerModule } from 'primeng/datepicker';
+
 
 @Component({
   selector: 'app-newlancamento',
   imports: [Dialog, IftaLabelModule, FloatLabel, InputGroupModule, InputGroupAddonModule,
-            DividerModule, SelectModule, ButtonModule, AutoCompleteModule, FormsModule,
-            InputTextModule, IconFieldModule, InputIconModule, CommonModule, TableModule,
-            CardModule, TextareaModule, TagModule, ToastModule, ConfirmDialog],
+    DividerModule, SelectModule, ButtonModule, AutoCompleteModule, FormsModule,
+    InputTextModule, IconFieldModule, InputIconModule, CommonModule, TableModule,
+    CardModule, TextareaModule, TagModule, ToastModule, ConfirmDialog, DatePickerModule,],
   templateUrl: './newlancamento.component.html',
   styleUrl: './newlancamento.component.scss',
   providers: [ConfirmationService, MessageService]
 })
 export class NewlancamentoComponent {
 
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {}
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
 
   pessoaSelecionada: any;
+  dataVencimento: Date | undefined;
+  dataRecebimento: Date | undefined;
 
   @Input() visibleDialog: boolean = false;
   @Output() closed = new EventEmitter<void>();
-
-
 
   pessoas: any[] = [
     { nome: 'Maria Silva', cpf: '511.948.098-55' },
