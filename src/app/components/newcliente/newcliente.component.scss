@@ -1,0 +1,46 @@
+:host ::ng-deep .p-dialog .p-dialog-header {
+  background: linear-gradient(to right, #262626, #393b3c);
+  color: white;
+  padding: 0.2rem;
+  justify-content: center;
+  position: relative;
+  border-radius: 10px;
+}
+
+:host ::ng-deep .p-dialog {
+  border-top: #262626;
+}
+
+
+:host ::ng-deep .p-dialog .p-dialog-title {
+  flex: 1;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  margin-left: 3rem;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header .p-dialog-close-button {
+  color: whitesmoke;
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+.input-row {
+  margin-bottom: 1rem;
+}
+
+.two-columns {
+  display: flex;
+  gap: 1rem;
+
+  .input-col {
+    flex: 1;
+  }
+}

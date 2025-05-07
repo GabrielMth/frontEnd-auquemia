@@ -27,7 +27,6 @@ import { DropdownModule } from 'primeng/dropdown';
 export class ClientesinfoComponent {
 
   status: boolean = true;
-  selectedPessoa!: Pessoa;
   visibleDialog: boolean = false;
 
 

@@ -1,42 +1,6 @@
-<div class="container">
-  <p-card class="cardclientes" header="Clientes |">
-    <p>Realize pesquisas, edições, colete informações sobre os clientes,
-      para editar selecione um registro dentro da tabela.
-    </p>
-
-    <div class="inputsuptable">
-      <p-iconfield>
-        <p-inputicon styleClass="pi pi-search" />
-        <input type="text" pInputText placeholder="Buscar por nome" name="search" autocomplete="off" fluid
-          class="busca-nome-input" />
-      </p-iconfield>
-      <a href="" pButton severity="info" label="Cliente" [raised]="true" icon="pi pi-user-plus"> </a>
-    </div>
-
-    <p-table class="tableclientes" [value]="pessoastemporario" [paginator]="true" [stripedRows]="true" showGridlines
-      [rows]="5" [tableStyle]="{ 'min-width': '50rem' }" [rowsPerPageOptions]="[5, 10, 20]" selectionMode="single">
-      <ng-template pTemplate="header">
-        <tr>
-          <th pSortableColumn="nome" style="width:25%">Nome<p-sortIcon field="nome" /> </th>
-          <th style="width:25%">Bairro</th>
-          <th style="width:25%">CEP</th>
-          <th style="width:25%">CPF</th>
-          <th style="width:25%">Contato</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-pessoas>
-        <tr [pSelectableRow]="pessoas" (dblclick)="onRowDoubleClick()">
-          <td>{{ pessoas.nome }}</td>
-          <td>{{ pessoas.bairro }}</td>
-          <td>{{ pessoas.cep }}</td>
-          <td>{{ pessoas.cpf }}</td>
-          <td>{{ pessoas.contato }}</td>
-        </tr>
-      </ng-template>
-    </p-table>
-
-
-    <p-dialog [(visible)]="visibleDialog" [modal]="true" header="Detalhes do Cliente"
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>
+<p-dialog [(visible)]="visibleDialog" [modal]="true" header="Cadastro de Cliente"
       [style]="{ width: '40rem', height: '40rem' }">
       <p-divider type="dotted" />
 
@@ -112,8 +76,8 @@
               <i class="pi pi-map"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="rua" class="inputuseropen1-dialog" />
-              <label for="rua">Rua</label>
+              <input pInputText id="estado" class="inputuseropen1-dialog" />
+              <label for="estado">Estado (UF)</label>
             </p-iftalabel>
           </p-inputgroup>
         </div>
@@ -124,8 +88,8 @@
               <i class="pi pi-map"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="Estado" class="inputuseropen1-dialog" />
-              <label for="estado">Estado</label>
+              <input pInputText id="rua" class="inputuseropen1-dialog" />
+              <label for="rua">Logradouro (Rua)</label>
             </p-iftalabel>
           </p-inputgroup>
         </div>
@@ -160,20 +124,12 @@
       </div>
 
 
+
       <p-divider type="dotted" />
-      <p-dropdown [(ngModel)]="status" [options]="statusOptions" optionLabel="label" placeholder="Selecione o status">
-      </p-dropdown>
 
       <ng-template #footer>
         <div class="dialog-footer">
-          <p-button label="Salvar Edição" icon="pi pi-pencil" [raised]="true" />
+          <p-button label="Salvar" icon="pi pi-pencil" [raised]="true" (onClick)="confirmarCadastroPessoa()" />
         </div>
       </ng-template>
     </p-dialog>
-
-
-
-
-
-  </p-card>
-</div>

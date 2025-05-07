@@ -13,7 +13,7 @@ import { NewlancamentoComponent } from '../newlancamento/newlancamento.component
 
 
 @Component({
-  selector: 'formulariotela',
+  selector: 'lancamentosforms',
   templateUrl: './lancamentoinputs.component.html',
   standalone: true,
   imports: [FormsModule, DatePicker, FloatLabel, InputTextModule, ButtonModule, TableModule, CommonModule, TooltipModule, CardModule, NewlancamentoComponent],

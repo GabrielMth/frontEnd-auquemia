@@ -66,6 +66,10 @@
   color: whitesmoke;
 }
 
+:host ::ng-deep .p-dialog {
+  border-top: #262626;
+}
+
 .dialog-footer {
   display: flex;
   justify-content: center;
@@ -85,5 +89,4 @@
     flex: 1;
   }
 }
-
 
