@@ -21,6 +21,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { DatePickerModule } from 'primeng/datepicker';
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 
 @Component({
@@ -28,7 +29,8 @@ import { DatePickerModule } from 'primeng/datepicker';
   imports: [Dialog, IftaLabelModule, FloatLabel, InputGroupModule, InputGroupAddonModule,
     DividerModule, SelectModule, ButtonModule, AutoCompleteModule, FormsModule,
     InputTextModule, IconFieldModule, InputIconModule, CommonModule, TableModule,
-    CardModule, TextareaModule, TagModule, ToastModule, ConfirmDialog, DatePickerModule,],
+    CardModule, TextareaModule, TagModule, ToastModule, ConfirmDialog, DatePickerModule,
+    InputTextModule, NgxCurrencyDirective],
   templateUrl: './newlancamento.component.html',
   styleUrl: './newlancamento.component.scss',
   providers: [ConfirmationService, MessageService]
@@ -41,6 +43,8 @@ export class NewlancamentoComponent {
   pessoaSelecionada: any;
   dataVencimento: Date | undefined;
   dataRecebimento: Date | undefined;
+  valor: number = 0;
+
 
   @Input() visibleDialog: boolean = false;
   @Output() closed = new EventEmitter<void>();
@@ -54,6 +58,11 @@ export class NewlancamentoComponent {
     { nome: 'Maria Silva' },
     { nome: 'Maria Silva' },
   ];
+
+  categorias =  [
+    { label: 'Alimentação', value:1 },
+    { label: 'Transporte',  value:2 }
+  ]
 
 
   pessoasFiltradas: any[] = [];
@@ -86,7 +95,7 @@ export class NewlancamentoComponent {
           summary: 'Lançamento Confirmado',
           detail: 'O lançamento foi salvo com sucesso.'
         });
-        // Aqui você pode salvar os dados ou fechar o diálogo
+        // salvar os dados ou fechar o diálogo
       },
       reject: () => {
         this.messageService.add({

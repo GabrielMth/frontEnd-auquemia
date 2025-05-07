@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
 }
 
 .login-container {
@@ -21,7 +22,7 @@
 .left-panel {
   flex: 1;
   background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
-  padding: 3rem;
+  padding: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

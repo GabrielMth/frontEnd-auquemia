@@ -59,8 +59,13 @@
                 <i class="pi pi-dollar"></i>
               </p-inputgroup-addon>
               <p-iftalabel>
-                <input pInputText id="valor" placeholder="0,00" />
-                <label for="valor">Valor R$</label>
+                <input
+                currencyMask
+                pInputText
+                id="valor"
+                placeholder="R$ 0,00"
+                autocomplete="false"/>
+                <label for="valor">Valor</label>
               </p-iftalabel>
             </p-inputgroup>
           </div>
@@ -73,7 +78,7 @@
       <p-divider type="dotted" />
 
 
-      <p-select optionLabel="label" placeholder="Categoria">
+      <p-select optionLabel="label" placeholder="Categoria" [options]="categorias">
       </p-select>
 
       <p-divider type="dotted" />

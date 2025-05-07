@@ -21,6 +21,7 @@
     "@ngx-translate/http-loader": "^16.0.1",
     "@primeng/themes": "^19.0.10",
     "chart.js": "^4.4.8",
+    "ngx-currency": "^19.0.0",
     "ngx-translate": "^0.0.1-security",
     "primeicons": "^7.0.0",
     "primeng": "^19.0.10",
