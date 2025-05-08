@@ -24,7 +24,9 @@ a.p-button {
 }
 
 
-
+.p-toast {
+  z-index: 999999 !important; /* Valor bem alto para garantir que fique acima de tudo */
+}
 
 
 

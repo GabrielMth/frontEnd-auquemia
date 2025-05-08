@@ -62,7 +62,7 @@ export class NewclienteComponent {
         this.messageService.add({
           severity: 'success',
           summary: 'Cadastro confirmado',
-          detail: 'O cliente foi cadastrado com sucesso.'
+          detail: 'O cliente foi cadastrado com sucesso.',
         });
 
         this.visibleDialogDetailsClient = true;

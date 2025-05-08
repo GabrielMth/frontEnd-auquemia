@@ -1,5 +1,4 @@
 <div class="container">
-
   <p-confirmDialog></p-confirmDialog>
   <p-toast></p-toast>
   <p-dialog [(visible)]="visibleDialogNewClient" [modal]="true" header="Cadastro de Cliente"
@@ -141,7 +140,9 @@
 
 
 
-  <app-clientinfo [visibleInfoClientDialog]="visibleDialogDetailsClient" (closedDialogDetails)="fecharDialogDetails()"></app-clientinfo>
+  <app-clientinfo *ngIf="visibleDialogDetailsClient" [visibleInfoClientDialog]="visibleDialogDetailsClient"
+    (closedDialogDetails)="fecharDialogDetails()">
+  </app-clientinfo>
 
 
 </div>
