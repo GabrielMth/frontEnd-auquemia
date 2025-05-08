@@ -14,20 +14,30 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { FloatLabel } from 'primeng/floatlabel';
 import { DropdownModule } from 'primeng/dropdown';
+import { NewclienteComponent } from '../NewClient/newcliente.component'
 
+interface Pessoa {
+  nome: string;
+  bairro: string;
+  cep: string;
+  cpf: string;
+  contato: string;
+}
 
 @Component({
-  selector: 'app-clientesinfo',
+  selector: 'app-clientestable',
   imports: [CardModule, TableModule, CommonModule, InputIconModule, IconFieldModule, FormsModule,
   InputTextModule, ButtonModule, Dialog, DividerModule, InputGroupModule, InputGroupAddonModule,
-  IftaLabelModule, FloatLabel, DropdownModule],
+  IftaLabelModule, FloatLabel, DropdownModule,NewclienteComponent],
   templateUrl: './clientestable.component.html',
   styleUrl: './clientestable.component.scss',
 })
 export class ClientesTableComponent {
 
   status: boolean = true;
-  visibleDialog: boolean = false;
+  visibleDialogDetails: boolean = false;
+
+  dialogCadastroCliente: boolean = false;
 
 
   pessoastemporario: Pessoa[] = [
@@ -98,7 +108,7 @@ export class ClientesTableComponent {
   ];
 
   onRowDoubleClick(): void {
-    this.visibleDialog = true;
+    this.visibleDialogDetails = true;
   }
 
 
@@ -107,13 +117,16 @@ export class ClientesTableComponent {
     { label: 'Inativo', value: false }
   ];
 
+
+  abrirCadastroCliente() {
+    this.dialogCadastroCliente = true;
+  }
+
+  fecharCadastroCliente() {
+    this.dialogCadastroCliente = false;
+  }
+
 }
 
 
-interface Pessoa {
-  nome: string;
-  bairro: string;
-  cep: string;
-  cpf: string;
-  contato: string;
-}
+

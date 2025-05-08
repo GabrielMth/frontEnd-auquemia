@@ -2,8 +2,8 @@
 
   <p-confirmDialog></p-confirmDialog>
   <p-toast></p-toast>
-  <p-dialog [(visible)]="visibleDialog" [modal]="true" header="Cadastro de Cliente"
-    [style]="{ width: '40rem', height: '40rem' }">
+  <p-dialog [(visible)]="visibleDialogNewClient" [modal]="true" header="Cadastro de Cliente"
+    [style]="{ width: '40rem', height: '40rem' }" (onHide)="fecharDialogCadastro()">
     <p-divider type="dotted" />
 
 
@@ -135,6 +135,13 @@
       </div>
     </ng-template>
   </p-dialog>
+
+
+
+
+
+
+  <app-clientinfo [visibleInfoClientDialog]="visibleDialogDetailsClient" (closedDialogDetails)="fecharDialogDetails()"></app-clientinfo>
 
 
 </div>

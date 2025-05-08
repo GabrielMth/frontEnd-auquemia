@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input,Output,EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
@@ -15,13 +15,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ClientinfoComponent } from '../NewClientDetails/clientinfo.component'
 
 @Component({
   selector: 'app-newcliente',
   imports: [DropdownModule, FloatLabel, IftaLabelModule, InputGroupAddonModule, InputGroupModule,
     DividerModule, Dialog, ButtonModule, InputTextModule, FormsModule, IconFieldModule,
-    InputIconModule, CommonModule, ConfirmDialog,ToastModule
-  ],
+    InputIconModule, CommonModule, ConfirmDialog, ToastModule, ClientinfoComponent],
   templateUrl: './newcliente.component.html',
   styleUrl: './newcliente.component.scss',
   providers: [ConfirmationService, MessageService]
@@ -30,12 +30,23 @@ export class NewclienteComponent {
 
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
-  visibleDialog: boolean = true;
+  @Input() visibleDialogNewClient: boolean = false;
+  @Output() closedCadastro = new EventEmitter<void>();
+
+  visibleDialogDetailsClient: boolean = false;
+
 
   status: boolean = true;
-
   statusOptions: [] = [];
 
+
+  fecharDialogCadastro() {
+    this.closedCadastro.emit();
+  }
+
+  fecharDialogDetails() {
+    this.visibleDialogDetailsClient = false;
+  }
 
 
   confirmarCadastroPessoa() {
@@ -53,7 +64,10 @@ export class NewclienteComponent {
           summary: 'Cadastro confirmado',
           detail: 'O cliente foi cadastrado com sucesso.'
         });
-        // salvar os dados ou fechar o diálogo
+
+        this.visibleDialogDetailsClient = true;
+        this.visibleDialogNewClient = false;
+
       },
       reject: () => {
         this.messageService.add({

@@ -1,11 +1,11 @@
 import { Component} from '@angular/core';
 import { LancamentoComponent } from './components/lancamentos/lancamentoinputs.component';
 import { NavbarComponent } from './components/navbar/navbar.component'
-import { ClientesTableComponent } from './components/clientestable/clientestable.component';
-import { NewlancamentoComponent } from './components/newlancamento/newlancamento.component';
+import { ClientesTableComponent } from './components/ClientsTable/clientestable.component';
+import { NewlancamentoComponent } from './components/NewLancamento/newlancamento.component';
 import { LoginComponent } from './components/login/login.component';
-import { NewclienteComponent } from './components/newcliente/newcliente.component';
-import { ClientinfoComponent } from './components/clientinfo/clientinfo.component';
+import { NewclienteComponent } from './components/NewClient/newcliente.component';
+import { ClientinfoComponent } from './components/NewClientDetails/clientinfo.component';
 
 @Component({
   standalone: true,

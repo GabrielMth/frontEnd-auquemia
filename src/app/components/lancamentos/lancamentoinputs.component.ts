@@ -8,7 +8,7 @@ import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { CardModule } from 'primeng/card';
-import { NewlancamentoComponent } from '../newlancamento/newlancamento.component';
+import { NewlancamentoComponent } from '../NewLancamento/newlancamento.component';
 
 
 

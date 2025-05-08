@@ -10,7 +10,7 @@
         <input type="text" pInputText placeholder="Buscar por nome" name="search" autocomplete="off" fluid
           class="busca-nome-input" />
       </p-iconfield>
-      <a href="" pButton severity="info" label="Cliente" [raised]="true" icon="pi pi-user-plus"> </a>
+      <p-button href="" severity="info" label="Cliente" [raised]="true" icon="pi pi-user-plus" (onClick)="abrirCadastroCliente()"> </p-button>
     </div>
 
     <p-table class="tableclientes" [value]="pessoastemporario" [paginator]="true" [stripedRows]="true" showGridlines
@@ -36,7 +36,7 @@
     </p-table>
 
 
-    <p-dialog [(visible)]="visibleDialog" [modal]="true" header="Detalhes do Cliente"
+    <p-dialog [(visible)]="visibleDialogDetails" [modal]="true" header="Detalhes do Cliente"
       [style]="{ width: '40rem', height: '40rem' }">
       <p-divider type="dotted" />
 
@@ -161,8 +161,8 @@
 
 
       <p-divider type="dotted" />
-      <p-dropdown [(ngModel)]="status" [options]="statusOptions" optionLabel="label" placeholder="Selecione o status">
-      </p-dropdown>
+      <p-select [(ngModel)]="status" optionLabel="label" placeholder="Selecione o status">
+      </p-select>
 
       <ng-template #footer>
         <div class="dialog-footer">
@@ -171,9 +171,8 @@
       </ng-template>
     </p-dialog>
 
-
-
-
-
   </p-card>
+
+  <app-newcliente [visibleDialogNewClient]="dialogCadastroCliente" (closedCadastro)="fecharCadastroCliente()"></app-newcliente>
+
 </div>

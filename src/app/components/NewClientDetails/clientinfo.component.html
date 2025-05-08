@@ -1,0 +1,41 @@
+<div class="container">
+  <p-dialog class="dialoginfoclient" [(visible)]="visibleInfoClientDialog" [modal]="true"
+    [style]="{ width: '40rem', height: '40rem' }" header="CADASTRO" (onHide)="fecharDetails()">
+
+    <p-divider type="dotted" />
+
+    <div class="infoclientes">
+      <div class="cupom-cliente">
+        <div class="cupom-header">INFORMAÇÕES DO CLIENTE CADASTRADO</div>
+
+        <div class="cupom-content">
+          <p><strong>Nome:</strong> TESTE </p>
+          <p><strong>CPF:</strong> TESTE </p>
+          <p-divider type="dotted" />
+          <p><strong>Celular:</strong> TESTE </p>
+          <p><strong>Telefone:</strong> TESTE </p>
+          <p-divider type="dotted" />
+          <p><strong>Cidade:</strong> TESTE </p>
+          <p><strong>Bairro:</strong> TESTE </p>
+          <p><strong>Logradouro (Rua):</strong> TESTE </p>
+          <p><strong>Estado (UF):</strong> TESTE </p>
+          <p><strong>Data de Cadastro:</strong> TESTE </p>
+        </div>
+
+        <div class="cupom-footer">
+          Obrigado por cadastrar, alimente o sistema sempre para ter as informações em suas mãos!
+        </div>
+      </div>
+    </div>
+
+    <p-divider type="dotted" />
+
+    <!-- Este ng-template DEVE estar dentro do <p-dialog> -->
+    <ng-template #footer>
+      <div class="dialog-footer">
+        <p-button label="OK" icon="pi pi-check" severity="warn" [raised]="true" (onClick)="fecharDetails()" />
+      </div>
+    </ng-template>
+  </p-dialog>
+
+</div>
