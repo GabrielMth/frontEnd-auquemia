@@ -21,10 +21,10 @@ import { DropdownModule } from 'primeng/dropdown';
   imports: [CardModule, TableModule, CommonModule, InputIconModule, IconFieldModule, FormsModule,
   InputTextModule, ButtonModule, Dialog, DividerModule, InputGroupModule, InputGroupAddonModule,
   IftaLabelModule, FloatLabel, DropdownModule],
-  templateUrl: './clientesinfo.component.html',
-  styleUrl: './clientesinfo.component.scss',
+  templateUrl: './clientestable.component.html',
+  styleUrl: './clientestable.component.scss',
 })
-export class ClientesinfoComponent {
+export class ClientesTableComponent {
 
   status: boolean = true;
   visibleDialog: boolean = false;

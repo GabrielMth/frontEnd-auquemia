@@ -1,135 +1,140 @@
-<p-confirmDialog></p-confirmDialog>
-<p-toast></p-toast>
-<p-dialog [(visible)]="visibleDialog" [modal]="true" header="Cadastro de Cliente"
-      [style]="{ width: '40rem', height: '40rem' }">
-      <p-divider type="dotted" />
+<div class="container">
+
+  <p-confirmDialog></p-confirmDialog>
+  <p-toast></p-toast>
+  <p-dialog [(visible)]="visibleDialog" [modal]="true" header="Cadastro de Cliente"
+    [style]="{ width: '40rem', height: '40rem' }">
+    <p-divider type="dotted" />
 
 
-      <div class="input-row">
+    <div class="input-row">
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-user"></i>
+        </p-inputgroup-addon>
+        <p-floatlabel variant="on">
+          <input pInputText id="nome" autocomplete="off" />
+          <label for="nome">Nome</label>
+        </p-floatlabel>
+      </p-inputgroup>
+    </div>
+
+    <div class="input-row two-columns">
+      <div class="input-col">
         <p-inputgroup>
           <p-inputgroup-addon>
-            <i class="pi pi-user"></i>
+            <i class="pi pi-address-book"></i>
           </p-inputgroup-addon>
-          <p-floatlabel variant="on">
-            <input pInputText id="nome" autocomplete="off" />
-            <label for="nome">Nome</label>
-          </p-floatlabel>
+          <p-iftalabel>
+            <input pInputText id="cpf" />
+            <label for="cpf">CPF</label>
+          </p-iftalabel>
         </p-inputgroup>
       </div>
 
-      <div class="input-row two-columns">
-        <div class="input-col">
-          <p-inputgroup>
-            <p-inputgroup-addon>
-              <i class="pi pi-address-book"></i>
-            </p-inputgroup-addon>
-            <p-iftalabel>
-              <input pInputText id="cpf" />
-              <label for="cpf">CPF</label>
-            </p-iftalabel>
-          </p-inputgroup>
-        </div>
+      <div class="input-col">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-map-marker"></i>
+          </p-inputgroup-addon>
+          <p-iftalabel>
+            <input pInputText id="cep" />
+            <label for="cep">CEP</label>
+          </p-iftalabel>
+        </p-inputgroup>
+      </div>
+    </div>
 
-        <div class="input-col">
-          <p-inputgroup>
-            <p-inputgroup-addon>
-              <i class="pi pi-map-marker"></i>
-            </p-inputgroup-addon>
-            <p-iftalabel>
-              <input pInputText id="cep" />
-              <label for="cep">CEP</label>
-            </p-iftalabel>
-          </p-inputgroup>
-        </div>
+    <div class="input-row two-columns">
+      <div class="input-col">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-compass"></i>
+          </p-inputgroup-addon>
+          <p-iftalabel>
+            <input pInputText id="bairro" class="inputuseropen1-dialog" />
+            <label for="bairro">Bairro</label>
+          </p-iftalabel>
+        </p-inputgroup>
       </div>
 
-      <div class="input-row two-columns">
-        <div class="input-col">
-          <p-inputgroup>
-            <p-inputgroup-addon>
-              <i class="pi pi-compass"></i>
-            </p-inputgroup-addon>
-            <p-iftalabel>
-              <input pInputText id="bairro" class="inputuseropen1-dialog" />
-              <label for="bairro">Bairro</label>
-            </p-iftalabel>
-          </p-inputgroup>
-        </div>
+      <div class="input-col">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-building"></i>
+          </p-inputgroup-addon>
+          <p-iftalabel>
+            <input pInputText id="cidade" class="inputuseropen1-dialog" />
+            <label for="cidade">Cidade</label>
+          </p-iftalabel>
+        </p-inputgroup>
+      </div>
+    </div>
 
-        <div class="input-col">
-          <p-inputgroup>
-            <p-inputgroup-addon>
-              <i class="pi pi-building"></i>
-            </p-inputgroup-addon>
-            <p-iftalabel>
-              <input pInputText id="cidade" class="inputuseropen1-dialog" />
-              <label for="cidade">Cidade</label>
-            </p-iftalabel>
-          </p-inputgroup>
-        </div>
+    <div class="input-row two-columns">
+      <div class="input-col">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-map"></i>
+          </p-inputgroup-addon>
+          <p-iftalabel>
+            <input pInputText id="estado" class="inputuseropen1-dialog" />
+            <label for="estado">Estado (UF)</label>
+          </p-iftalabel>
+        </p-inputgroup>
       </div>
 
-      <div class="input-row two-columns">
-        <div class="input-col">
-          <p-inputgroup>
-            <p-inputgroup-addon>
-              <i class="pi pi-map"></i>
-            </p-inputgroup-addon>
-            <p-iftalabel>
-              <input pInputText id="estado" class="inputuseropen1-dialog" />
-              <label for="estado">Estado (UF)</label>
-            </p-iftalabel>
-          </p-inputgroup>
-        </div>
+      <div class="input-col">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-map"></i>
+          </p-inputgroup-addon>
+          <p-iftalabel>
+            <input pInputText id="rua" class="inputuseropen1-dialog" />
+            <label for="rua">Logradouro (Rua)</label>
+          </p-iftalabel>
+        </p-inputgroup>
+      </div>
+    </div>
 
-        <div class="input-col">
-          <p-inputgroup>
-            <p-inputgroup-addon>
-              <i class="pi pi-map"></i>
-            </p-inputgroup-addon>
-            <p-iftalabel>
-              <input pInputText id="rua" class="inputuseropen1-dialog" />
-              <label for="rua">Logradouro (Rua)</label>
-            </p-iftalabel>
-          </p-inputgroup>
-        </div>
+    <p-divider type="dotted" />
+
+    <div class="input-row two-columns">
+      <div class="input-col">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-phone"></i>
+          </p-inputgroup-addon>
+          <p-iftalabel>
+            <input pInputText id="celular" class="inputuseropen1-dialog" />
+            <label for="celular">Celular</label>
+          </p-iftalabel>
+        </p-inputgroup>
       </div>
 
-      <p-divider type="dotted" />
-
-      <div class="input-row two-columns">
-        <div class="input-col">
-          <p-inputgroup>
-            <p-inputgroup-addon>
-              <i class="pi pi-phone"></i>
-            </p-inputgroup-addon>
-            <p-iftalabel>
-              <input pInputText id="celular" class="inputuseropen1-dialog" />
-              <label for="celular">Celular</label>
-            </p-iftalabel>
-          </p-inputgroup>
-        </div>
-
-        <div class="input-col">
-          <p-inputgroup>
-            <p-inputgroup-addon>
-              <i class="pi pi-phone"></i>
-            </p-inputgroup-addon>
-            <p-iftalabel>
-              <input pInputText id="telefone" class="inputuseropen1-dialog" />
-              <label for="telefone">Telefone</label>
-            </p-iftalabel>
-          </p-inputgroup>
-        </div>
+      <div class="input-col">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-phone"></i>
+          </p-inputgroup-addon>
+          <p-iftalabel>
+            <input pInputText id="telefone" class="inputuseropen1-dialog" />
+            <label for="telefone">Telefone</label>
+          </p-iftalabel>
+        </p-inputgroup>
       </div>
+    </div>
 
 
 
-      <p-divider type="dotted" />
+    <p-divider type="dotted" />
 
-      <ng-template #footer>
-        <div class="dialog-footer">
-          <p-button label="Salvar" icon="pi pi-pencil" [raised]="true" (onClick)="confirmarCadastroPessoa()" />
-        </div>
-      </ng-template>
-    </p-dialog>
+    <ng-template #footer>
+      <div class="dialog-footer">
+        <p-button label="Salvar" icon="pi pi-pencil" [raised]="true" (onClick)="confirmarCadastroPessoa()" />
+      </div>
+    </ng-template>
+  </p-dialog>
+
+
+</div>

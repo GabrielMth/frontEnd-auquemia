@@ -31,6 +31,7 @@ export class NewclienteComponent {
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   visibleDialog: boolean = true;
+
   status: boolean = true;
 
   statusOptions: [] = [];
