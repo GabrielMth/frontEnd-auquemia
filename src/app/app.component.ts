@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LancamentoComponent } from './components/Lancamentos/lancamentoinputs.component';
-import { NavbarComponent } from './components/navbar/navbar.component'
+import { NavbarComponent } from './components/Navbar/navbar.component'
 import { ClientesTableComponent } from './components/ClientsTable/clientestable.component';
 import { NewlancamentoComponent } from './components/NewLancamento/newlancamento.component';
 import { LoginComponent } from './components/Login/login.component';
@@ -12,8 +12,7 @@ import { ClientinfoComponent } from './components/NewClientDetails/clientinfo.co
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [LancamentoComponent, NavbarComponent, ClientesTableComponent, NewlancamentoComponent, LoginComponent,
-    NewclienteComponent, ClientinfoComponent],
+  imports: [NavbarComponent, LancamentoComponent],
 })
 export class AppComponent {
 

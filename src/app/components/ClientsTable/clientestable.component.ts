@@ -14,6 +14,13 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { FloatLabel } from 'primeng/floatlabel';
 import { DropdownModule } from 'primeng/dropdown';
+import { Tag } from 'primeng/tag';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { InputMaskModule } from 'primeng/inputmask';
+
+
 import { NewclienteComponent } from '../NewClient/newcliente.component'
 
 interface Pessoa {
@@ -26,13 +33,18 @@ interface Pessoa {
 
 @Component({
   selector: 'app-clientestable',
-  imports: [CardModule, TableModule, CommonModule, InputIconModule, IconFieldModule, FormsModule,
-  InputTextModule, ButtonModule, Dialog, DividerModule, InputGroupModule, InputGroupAddonModule,
-  IftaLabelModule, FloatLabel, DropdownModule,NewclienteComponent],
+  imports: [CardModule, TableModule, CommonModule, InputIconModule,
+    IconFieldModule, FormsModule, InputTextModule, ButtonModule,
+    Dialog, DividerModule, InputGroupModule, InputGroupAddonModule,
+    IftaLabelModule, FloatLabel, DropdownModule, NewclienteComponent,
+    Tag, ToastModule, ConfirmPopupModule, InputMaskModule],
   templateUrl: './clientestable.component.html',
   styleUrl: './clientestable.component.scss',
+  providers: [ConfirmationService, MessageService],
 })
 export class ClientesTableComponent {
+
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   status: boolean = true;
   visibleDialogDetails: boolean = false;
@@ -124,6 +136,29 @@ export class ClientesTableComponent {
 
   fecharCadastroCliente() {
     this.dialogCadastroCliente = false;
+  }
+
+  confirm1(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Você tem certeza que deseja realizar esse procedimento ?',
+      icon: 'pi pi-exclamation-triangle',
+      rejectButtonProps: {
+        label: 'Cancelar',
+        severity: 'secondary',
+        outlined: true
+      },
+      acceptButtonProps: {
+        label: 'Sim'
+      },
+      accept: () => {
+        this.messageService.add({ severity: 'info', summary: 'Informações Cliente', detail: 'Cliente atualizado com sucesso', life: 3000 });
+        this.visibleDialogDetails = false
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'error', summary: 'Informações Cliente', detail: 'Cliente não atualizado', life: 3000 });
+      }
+    });
   }
 
 }

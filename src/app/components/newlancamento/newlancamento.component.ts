@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Input, ViewChild  } from '@angular/core';
+import { Component, EventEmitter, Output, Input  } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';

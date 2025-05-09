@@ -13,7 +13,7 @@
   --p-button-info-active-color: black(255, 16, 16);
 }
 
-.inputsuptable{
+.inputsuptable {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -70,13 +70,13 @@
   border-top: #262626;
 }
 
-.dialog-footer {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+
+.footer {
+  --p-tag-border-radius: 5px
 }
 
 
+//inputs detalhes cadastro cliente
 .input-row {
   margin-bottom: 1rem;
 }
@@ -87,6 +87,26 @@
 
   .input-col {
     flex: 1;
+
+    // Corrige a largura dos campos com inputgroup + inputmask
+    ::ng-deep p-inputgroup {
+      display: flex;
+      width: 100%;
+
+      // Corrige p-iftalabel dentro do inputgroup
+      p-iftalabel {
+        flex: 1;
+        display: block;
+
+        // Garante que os inputs ocupem toda a largura
+        ::ng-deep p-inputmask,
+        ::ng-deep input {
+          width: 100% !important;
+          display: block;
+          border-bottom-left-radius: 0;
+          border-top-left-radius: 0;
+        }
+      }
+    }
   }
 }
-

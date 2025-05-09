@@ -1,3 +1,5 @@
+<p-toast />
+<p-confirmpopup />
 <div class="container">
   <p-card class="cardclientes" header="Clientes |">
     <p>Realize pesquisas, edições, colete informações sobre os clientes,
@@ -10,7 +12,8 @@
         <input type="text" pInputText placeholder="Buscar por nome" name="search" autocomplete="off" fluid
           class="busca-nome-input" />
       </p-iconfield>
-      <p-button href="" severity="info" label="Cliente" [raised]="true" icon="pi pi-user-plus" (onClick)="abrirCadastroCliente()"> </p-button>
+      <p-button href="" severity="info" label="Cliente" [raised]="true" icon="pi pi-user-plus"
+        (onClick)="abrirCadastroCliente()"> </p-button>
     </div>
 
     <p-table class="tableclientes" [value]="pessoastemporario" [paginator]="true" [stripedRows]="true" showGridlines
@@ -60,7 +63,7 @@
               <i class="pi pi-address-book"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="cpf" />
+              <p-inputmask id="cpf" mask="999.999.999-99" autocomplete="off" />
               <label for="cpf">CPF</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -72,7 +75,7 @@
               <i class="pi pi-map-marker"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="cep" />
+              <p-inputmask id="cep" mask="99999-999" autocomplete="off" />
               <label for="cep">CEP</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -124,7 +127,7 @@
               <i class="pi pi-map"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="Estado" class="inputuseropen1-dialog" />
+              <input pInputText id="estado" class="inputuseropen1-dialog" />
               <label for="estado">Estado</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -137,10 +140,10 @@
         <div class="input-col">
           <p-inputgroup>
             <p-inputgroup-addon>
-              <i class="pi pi-phone"></i>
+              <i class="pi pi-mobile"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="celular" class="inputuseropen1-dialog" />
+              <p-inputmask id="celular" mask="(99) 99999-9999" autocomplete="off" />
               <label for="celular">Celular</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -152,27 +155,30 @@
               <i class="pi pi-phone"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="telefone" class="inputuseropen1-dialog" />
+              <p-inputmask id="telefone" mask="(99) 9999-9999" autocomplete="off" />
               <label for="telefone">Telefone</label>
             </p-iftalabel>
           </p-inputgroup>
         </div>
       </div>
 
-
       <p-divider type="dotted" />
-      <p-select [(ngModel)]="status" optionLabel="label" placeholder="Selecione o status">
-      </p-select>
+      <div class="footer">
+        <p-tag severity="secondary" value="Cadastro: " />
+      </div>
+      <!-- <p-autocomplete [(ngModel)]="status" optionLabel="label" placeholder="Selecione o status">
+      </p-autocomplete> -->
 
       <ng-template #footer>
-        <div class="dialog-footer">
-          <p-button label="Salvar Edição" icon="pi pi-pencil" [raised]="true" />
+        <div class="buttonfooter">
+          <p-button label="Salvar Edição" icon="pi pi-pencil" [raised]="true" (onClick)="confirm1($event)" />
         </div>
       </ng-template>
     </p-dialog>
 
   </p-card>
 
-  <app-newcliente [visibleDialogNewClient]="dialogCadastroCliente" (closedCadastro)="fecharCadastroCliente()"></app-newcliente>
+  <app-newcliente [visibleDialogNewClient]="dialogCadastroCliente"
+    (closedCadastro)="fecharCadastroCliente()"></app-newcliente>
 
 </div>

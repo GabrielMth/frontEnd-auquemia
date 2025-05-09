@@ -10,18 +10,20 @@
   width: 100%;
 }
 
-/* Aplica gap reduzido apenas entre Vencimento e Recebimento */
+
 .row.two-fields {
-  gap: 0.5rem; /* Pequeno espaço entre os dois campos */
+  gap: 0.5rem;
 }
 
 
-
+.p-progressspinner-circle {
+  width: 40px;
+}
 
 
 .descricao-valor {
   display: flex;
-  gap: 0.5rem; /* Espaço entre descrição e valor */
+  gap: 0.5rem;
 }
 
 .descricao-col {
@@ -37,14 +39,14 @@
   display: flex;
   margin-bottom: 1rem;
   flex-direction: column;
-  width: 100%; // Use 100% para responsividade ou aumente conforme desejado
+  width: 100%;
   max-width: 40rem;
 }
 
 
 
 
-::ng-deep .p-dialog .p-dialog-header {
+:host ::ng-deep .p-dialog .p-dialog-header {
   background: linear-gradient(to right, #262626, #393b3c);
   color: white;
   padding: 0.2rem;
@@ -53,12 +55,12 @@
   border-radius: 10px;
 }
 
-::ng-deep .p-dialog .p-dialog-header .p-dialog-close-button {
+:host ::ng-deep .p-dialog .p-dialog-header .p-dialog-close-button {
   color: whitesmoke;
 }
 
 
-::ng-deep .p-dialog .p-dialog-title {
+:host ::ng-deep .p-dialog .p-dialog-title {
   flex: 1;
   text-align: center;
   font-size: 1.1rem;
@@ -115,8 +117,6 @@
   border-bottom-left-radius: 0;
   width: 100px;
 }
-
-
 
 
 @media (max-width: 500px) {

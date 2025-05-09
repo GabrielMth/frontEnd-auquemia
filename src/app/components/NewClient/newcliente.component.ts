@@ -1,4 +1,4 @@
-import { Component,Input,Output,EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
@@ -15,13 +15,20 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { InputMaskModule } from 'primeng/inputmask';
+
+
+
 import { ClientinfoComponent } from '../NewClientDetails/clientinfo.component'
+
 
 @Component({
   selector: 'app-newcliente',
-  imports: [DropdownModule, FloatLabel, IftaLabelModule, InputGroupAddonModule, InputGroupModule,
-    DividerModule, Dialog, ButtonModule, InputTextModule, FormsModule, IconFieldModule,
-    InputIconModule, CommonModule, ConfirmDialog, ToastModule, ClientinfoComponent],
+  imports: [DropdownModule, FloatLabel,
+    IftaLabelModule, InputGroupAddonModule, InputGroupModule,
+    DividerModule, Dialog, ButtonModule, InputTextModule,
+    FormsModule, IconFieldModule, InputIconModule, CommonModule,
+    ConfirmDialog, ToastModule, ClientinfoComponent, InputMaskModule],
   templateUrl: './newcliente.component.html',
   styleUrl: './newcliente.component.scss',
   providers: [ConfirmationService, MessageService]
@@ -61,7 +68,7 @@ export class NewclienteComponent {
       accept: () => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Cadastro confirmado',
+          summary: 'Cadastro Confirmado',
           detail: 'O cliente foi cadastrado com sucesso.',
         });
 

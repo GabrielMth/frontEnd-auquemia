@@ -7,8 +7,9 @@
 
     <p-divider type="dotted" />
 
-    <form>
-      <div class="form-grid">
+    <div class="form-grid">
+
+      <form>
 
         <!-- Vencimento / Recebimento -->
         <div class="row two-fields">
@@ -66,54 +67,51 @@
           </div>
         </div>
 
-      </div>
 
 
 
-      <p-divider type="dotted" />
+
+        <p-divider type="dotted" />
 
 
-      <p-select optionLabel="label" placeholder="Categoria" [options]="categorias">
-      </p-select>
+        <p-select optionLabel="label" placeholder="Categoria" [options]="categorias">
+        </p-select>
 
-      <p-divider type="dotted" />
+        <p-divider type="dotted" />
 
-      <div class="searchperson">
-        <p-autocomplete [(ngModel)]="pessoaSelecionada" [suggestions]="pessoasFiltradas"
-          (completeMethod)="filtrarPessoas($event)" field="nome" placeholder="Digite o nome da pessoa ou CPF"
-          dropdownIcon="pi pi-users" [minLength]="1">
-          <ng-template let-pessoa pTemplate="item">
-            <div class="flex items-center gap-2">
-              <i class="pi pi-user"></i>
-              <span> {{ pessoa.nome }} - </span>
+        <div class="searchperson">
+          <p-autocomplete [(ngModel)]="pessoaSelecionada" [suggestions]="pessoasFiltradas"
+            (completeMethod)="filtrarPessoas($event)" field="nome" placeholder="Digite o nome da pessoa ou CPF"
+            dropdownIcon="pi pi-users" [minLength]="1">
+            <ng-template let-pessoa pTemplate="item">
+              <div class="flex items-center gap-2">
+                <i class="pi pi-user"></i>
+                <span> {{ pessoa.nome }} - </span>
 
-              <p-tag *ngIf="pessoa.cpf; else cpfNaoInformado" [value]="'CPF: ' + pessoa.cpf" severity="success">
-              </p-tag>
-
-              <ng-template #cpfNaoInformado>
-                <p-tag value="CPF: Não Informado" severity="danger">
+                <p-tag *ngIf="pessoa.cpf; else cpfNaoInformado" [value]="'CPF: ' + pessoa.cpf" severity="success">
                 </p-tag>
-              </ng-template>
-            </div>
-          </ng-template>
 
-        </p-autocomplete>
-      </div>
+                <ng-template #cpfNaoInformado>
+                  <p-tag value="CPF: Não Informado" severity="danger">
+                  </p-tag>
+                </ng-template>
+              </div>
+            </ng-template>
 
-      <div>
-        <p-floatlabel variant="in">
-          <textarea pTextarea id="observacao" rows="6" cols="30" style="resize: none; width: 100%; height: auto;"
-            class="h-full"></textarea>
-          <label for="observacao">Observação</label>
-        </p-floatlabel>
-      </div>
-    </form>
+          </p-autocomplete>
+        </div>
 
+        <div>
+          <p-floatlabel variant="in">
+            <textarea pTextarea id="observacao" rows="6" cols="30" style="resize: none; width: 100%; height: auto;"
+              class="h-full"></textarea>
+            <label for="observacao">Observação</label>
+          </p-floatlabel>
+        </div>
 
+      </form>
 
-
-
-
+    </div>
 
     <ng-template #footer>
 
@@ -122,6 +120,7 @@
         </p-button>
       </div>
     </ng-template>
+
   </p-dialog>
 
 

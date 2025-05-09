@@ -12,7 +12,7 @@
           <i class="pi pi-user"></i>
         </p-inputgroup-addon>
         <p-floatlabel variant="on">
-          <input pInputText id="nome" autocomplete="off" />
+          <input pInputText id="nome" autocomplete="off" maxlength="50" />
           <label for="nome">Nome</label>
         </p-floatlabel>
       </p-inputgroup>
@@ -25,7 +25,7 @@
             <i class="pi pi-address-book"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <input pInputText id="cpf" />
+            <p-inputmask id="cpf" mask="999.999.999-99" autocomplete="off" />
             <label for="cpf">CPF</label>
           </p-iftalabel>
         </p-inputgroup>
@@ -37,7 +37,7 @@
             <i class="pi pi-map-marker"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <input pInputText id="cep" />
+            <p-inputmask id="cep" mask="99999-999" autocomplete="off" />
             <label for="cep">CEP</label>
           </p-iftalabel>
         </p-inputgroup>
@@ -102,10 +102,10 @@
       <div class="input-col">
         <p-inputgroup>
           <p-inputgroup-addon>
-            <i class="pi pi-phone"></i>
+            <i class="pi pi-mobile"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <input pInputText id="celular" class="inputuseropen1-dialog" />
+            <p-inputmask id="celular" mask="(99) 99999-9999" autocomplete="off" />
             <label for="celular">Celular</label>
           </p-iftalabel>
         </p-inputgroup>
@@ -117,7 +117,7 @@
             <i class="pi pi-phone"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <input pInputText id="telefone" class="inputuseropen1-dialog" />
+            <p-inputmask id="telefone" mask="(99) 9999-9999" autocomplete="off" />
             <label for="telefone">Telefone</label>
           </p-iftalabel>
         </p-inputgroup>
@@ -130,7 +130,7 @@
 
     <ng-template #footer>
       <div class="dialog-footer">
-        <p-button label="Salvar" icon="pi pi-pencil" [raised]="true" (onClick)="confirmarCadastroPessoa()" />
+        <p-button label="Salvar" icon="pi pi-save" [raised]="true" (onClick)="confirmarCadastroPessoa()" />
       </div>
     </ng-template>
   </p-dialog>
