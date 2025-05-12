@@ -18,10 +18,13 @@
               </p-inputgroup-addon>
               <p-iftaLabel variant="on">
                 <p-datepicker [(ngModel)]="dataVencimento" inputId="dataVencimento" [showButtonBar]="true"
-                  dateFormat="dd/mm/yy" class="custom-datepicker" required name="dataVencimento" />
+                  dateFormat="dd/mm/yy" class="custom-datepicker" required name="datavencimento" ngModel
+                  #datavencimento="ngModel" />
                 <label for="dataVencimento">Vencimento</label>
               </p-iftaLabel>
             </p-inputgroup>
+            <app-message-valid-forms [control]="datavencimento" error="required"
+              text="Data vencimento é obrigatório"></app-message-valid-forms>
           </div>
 
           <div class="field-col">
@@ -31,10 +34,13 @@
               </p-inputgroup-addon>
               <p-iftaLabel variant="on">
                 <p-datepicker [(ngModel)]="dataRecebimento" inputId="dataRecebimento" [showButtonBar]="true"
-                  dateFormat="dd/mm/yy" class="custom-datepicker" required name="dataRecebimento" />
+                  dateFormat="dd/mm/yy" class="custom-datepicker" required name="datarecebimento" ngModel
+                  #datarecebimento="ngModel" />
                 <label for="dataRecebimento">Recebimento</label>
               </p-iftaLabel>
             </p-inputgroup>
+            <app-message-valid-forms [control]="datarecebimento" error="required"
+              text="Data recebimento é obrigatório"></app-message-valid-forms>
           </div>
         </div>
 
@@ -46,21 +52,16 @@
                 <i class="pi pi-clipboard"></i>
               </p-inputgroup-addon>
               <p-iftalabel>
-                <input pInputText id="descricao" name="descricao" ngModel #descricao="ngModel" required minlength="5" />
+                <input pInputText id="descricao" name="descricao" ngModel #descricao="ngModel" required
+                  minlength="10" />
                 <label for="descricao">Descrição</label>
               </p-iftalabel>
             </p-inputgroup>
 
-            <div *ngIf="descricao.hasError('required') && descricao.dirty" class="messageerror">
-              <p-message severity="error" variant="simple" size="small">Informar uma descrição é
-                obrigatório.</p-message>
-            </div>
-
-            <div *ngIf="descricao.hasError('minlength') && descricao.dirty" class="messageerror">
-              <p-message severity="error" variant="simple" size="small">
-                A descrição precisa ter mais que 5 caracteres.
-              </p-message>
-            </div>
+            <app-message-valid-forms [control]="descricao" error="required"
+              text="Informe a descrição obrigatória"></app-message-valid-forms>
+            <app-message-valid-forms [control]="descricao" error="minlength"
+              text="A descrição precisa ter no mínimo {{ descricao.errors?.['minlength']?.requiredLength }} caracteres."></app-message-valid-forms>
 
           </div>
 
@@ -71,10 +72,12 @@
               </p-inputgroup-addon>
               <p-iftalabel>
                 <input currencyMask pInputText id="valor" placeholder="R$ 0,00" autocomplete="false" name="valor"
-                  required />
+                  required [(ngModel)]="valor" #valorModel="ngModel" />
                 <label for="valor">Valor</label>
               </p-iftalabel>
             </p-inputgroup>
+            <app-message-valid-forms [control]="valorModel" error="required"
+              text="Valor é obrigatório"></app-message-valid-forms>
           </div>
         </div>
 
@@ -93,7 +96,7 @@
       <div class="searchperson">
         <p-autocomplete [(ngModel)]="pessoaSelecionada" [suggestions]="pessoasFiltradas"
           (completeMethod)="filtrarPessoas($event)" field="nome" placeholder="Digite o nome da pessoa ou CPF"
-          dropdownIcon="pi pi-users" [minLength]="1" name="pessoa" required>
+          dropdownIcon="pi pi-users" [minLength]="1" name="pessoa" required ngModel #buscarpessoa="ngModel">
           <ng-template let-pessoa pTemplate="item">
             <div class="flex items-center gap-2">
               <i class="pi pi-user"></i>
@@ -110,12 +113,14 @@
           </ng-template>
 
         </p-autocomplete>
+        <app-message-valid-forms [control]="buscarpessoa" error="required"
+          text="Para realizar um lançamento é necessário vincular uma pessoa."></app-message-valid-forms>
       </div>
 
       <div>
         <p-floatlabel variant="in">
           <textarea pTextarea id="observacao" rows="6" cols="30" style="resize: none; width: 100%; height: auto;"
-            class="h-full" name="observacao" required minlength="1"></textarea>
+            class="h-full" name="observacao"></textarea>
           <label for="observacao">Observação</label>
         </p-floatlabel>
       </div>

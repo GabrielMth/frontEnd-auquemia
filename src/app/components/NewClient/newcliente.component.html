@@ -5,17 +5,19 @@
     [style]="{ width: '40rem', height: '40rem' }" (onHide)="fecharDialogCadastro()">
     <p-divider type="dotted" />
 
-
+    <form autocomplete="off">
     <div class="input-row">
       <p-inputgroup>
         <p-inputgroup-addon>
           <i class="pi pi-user"></i>
         </p-inputgroup-addon>
         <p-floatlabel variant="on">
-          <input pInputText id="nome" autocomplete="off" maxlength="50" />
+          <input pInputText id="nome" autocomplete="off" maxlength="50" minlength="5" name="nome" required ngModel #nome="ngModel"/>
           <label for="nome">Nome</label>
         </p-floatlabel>
       </p-inputgroup>
+      <app-message-valid-forms [control]="nome" text="O nome da pessoa é obrigatório" error="required" ></app-message-valid-forms>
+      <app-message-valid-forms [control]="nome" text="Informe um nome com pelo menos 5 caracteres" error="minlength" ></app-message-valid-forms>
     </div>
 
     <div class="input-row two-columns">
@@ -25,10 +27,11 @@
             <i class="pi pi-address-book"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <p-inputmask id="cpf" mask="999.999.999-99" autocomplete="off" />
+            <p-inputmask id="cpf" mask="999.999.999-99" autocomplete="off" required name="cpf" ngModel #cpf="ngModel"/>
             <label for="cpf">CPF</label>
           </p-iftalabel>
         </p-inputgroup>
+        <app-message-valid-forms [control]="cpf" text="CPF é obrigatório" error="required" ></app-message-valid-forms>
       </div>
 
       <div class="input-col">
@@ -37,10 +40,11 @@
             <i class="pi pi-map-marker"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <p-inputmask id="cep" mask="99999-999" autocomplete="off" />
+            <p-inputmask id="cep" mask="99999-999" autocomplete="off" required name="cep" ngModel #cep="ngModel"/>
             <label for="cep">CEP</label>
           </p-iftalabel>
         </p-inputgroup>
+        <app-message-valid-forms [control]="cep" text="CEP é obrigatório" error="required" ></app-message-valid-forms>
       </div>
     </div>
 
@@ -51,10 +55,11 @@
             <i class="pi pi-compass"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <input pInputText id="bairro" class="inputuseropen1-dialog" />
+            <input pInputText id="bairro" class="inputuseropen1-dialog" required name="bairro" ngModel #bairro="ngModel"/>
             <label for="bairro">Bairro</label>
           </p-iftalabel>
         </p-inputgroup>
+        <app-message-valid-forms [control]="bairro" text="Bairro é obrigatório" error="required" ></app-message-valid-forms>
       </div>
 
       <div class="input-col">
@@ -63,10 +68,11 @@
             <i class="pi pi-building"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <input pInputText id="cidade" class="inputuseropen1-dialog" />
+            <input pInputText id="cidade" class="inputuseropen1-dialog" required name="cidade" ngModel #cidade="ngModel"/>
             <label for="cidade">Cidade</label>
           </p-iftalabel>
         </p-inputgroup>
+        <app-message-valid-forms [control]="cidade" text="Cidade é obrigatório" error="required" ></app-message-valid-forms>
       </div>
     </div>
 
@@ -77,10 +83,11 @@
             <i class="pi pi-map"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <input pInputText id="estado" class="inputuseropen1-dialog" />
+            <input pInputText id="estado" class="inputuseropen1-dialog" required name="estado" ngModel #estado="ngModel"/>
             <label for="estado">Estado (UF)</label>
           </p-iftalabel>
         </p-inputgroup>
+        <app-message-valid-forms [control]="estado" text="UF é obrigatório" error="required" ></app-message-valid-forms>
       </div>
 
       <div class="input-col">
@@ -89,10 +96,11 @@
             <i class="pi pi-map"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <input pInputText id="rua" class="inputuseropen1-dialog" />
+            <input pInputText id="rua" class="inputuseropen1-dialog" required name="rua" ngModel #rua="ngModel"/>
             <label for="rua">Logradouro (Rua)</label>
           </p-iftalabel>
         </p-inputgroup>
+        <app-message-valid-forms [control]="rua" text="O nome da rua é obrigatório" error="required" ></app-message-valid-forms>
       </div>
     </div>
 
@@ -105,10 +113,11 @@
             <i class="pi pi-mobile"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <p-inputmask id="celular" mask="(99) 99999-9999" autocomplete="off" />
+            <p-inputmask id="celular" mask="(99) 99999-9999" autocomplete="off" required name="celular" ngModel #celular="ngModel"/>
             <label for="celular">Celular</label>
           </p-iftalabel>
         </p-inputgroup>
+        <app-message-valid-forms [control]="celular" text="Celular é obrigatório" error="required" ></app-message-valid-forms>
       </div>
 
       <div class="input-col">
@@ -118,11 +127,12 @@
           </p-inputgroup-addon>
           <p-iftalabel>
             <p-inputmask id="telefone" mask="(99) 9999-9999" autocomplete="off" />
-            <label for="telefone">Telefone</label>
+            <label for="telefone">Telefone (Opcional)</label>
           </p-iftalabel>
         </p-inputgroup>
       </div>
     </div>
+    </form>
 
 
 

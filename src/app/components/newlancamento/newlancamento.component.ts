@@ -22,6 +22,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { DatePickerModule } from 'primeng/datepicker';
 import { NgxCurrencyDirective } from 'ngx-currency';
+import { MessagesValidFormsComponent } from "../MessagesValidForms/messages-valid-forms.component";
 import { Message } from 'primeng/message';
 
 
@@ -31,7 +32,7 @@ import { Message } from 'primeng/message';
     DividerModule, SelectModule, ButtonModule, AutoCompleteModule, FormsModule,
     InputTextModule, IconFieldModule, InputIconModule, CommonModule, TableModule,
     CardModule, TextareaModule, TagModule, ToastModule, ConfirmDialog, DatePickerModule,
-    InputTextModule, NgxCurrencyDirective, Message],
+    InputTextModule, NgxCurrencyDirective, MessagesValidFormsComponent, Message],
   templateUrl: './newlancamento.component.html',
   styleUrl: './newlancamento.component.scss',
   providers: [ConfirmationService, MessageService]
@@ -39,7 +40,6 @@ import { Message } from 'primeng/message';
 export class NewlancamentoComponent {
 
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
-
 
   pessoaSelecionada: any;
   dataVencimento: Date | undefined;

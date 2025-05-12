@@ -16,6 +16,7 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { InputMaskModule } from 'primeng/inputmask';
+import { MessagesValidFormsComponent } from '../MessagesValidForms/messages-valid-forms.component';
 
 
 
@@ -28,7 +29,8 @@ import { ClientinfoComponent } from '../NewClientDetails/clientinfo.component'
     IftaLabelModule, InputGroupAddonModule, InputGroupModule,
     DividerModule, Dialog, ButtonModule, InputTextModule,
     FormsModule, IconFieldModule, InputIconModule, CommonModule,
-    ConfirmDialog, ToastModule, ClientinfoComponent, InputMaskModule],
+    ConfirmDialog, ToastModule, ClientinfoComponent, InputMaskModule,
+    MessagesValidFormsComponent],
   templateUrl: './newcliente.component.html',
   styleUrl: './newcliente.component.scss',
   providers: [ConfirmationService, MessageService]
