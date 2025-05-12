@@ -4,6 +4,7 @@ import { provideZoneChangeDetection } from '@angular/core';
 import { providePrimeNG } from 'primeng/config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideEnvironmentNgxCurrency, NgxCurrencyInputMode } from 'ngx-currency';
+import { provideHttpClient } from '@angular/common/http';
 
 import Aura from '@primeng/themes/aura';
 
@@ -29,6 +30,7 @@ export const appConfig: ApplicationConfig = {
       thousands: '.',
       nullable: true,
       inputMode: NgxCurrencyInputMode.Financial
-    })
+    }),
+    provideHttpClient(),
   ],
 };
