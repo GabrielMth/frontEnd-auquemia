@@ -1,15 +1,12 @@
-  <div class="card">
-    <div class="p-grid">
-      <p-menubar [model]="items">
-        <ng-template pTemplate="end">
-          <p-tag severity="info" value="Gabriel S |"/>
-          <a pButton icon="pi pi-user" class="p-button-text" (click)="menuLogout.toggle($event)"></a>
-          <!-- Menu de logout -->
-          <p-tieredmenu #menuLogout [model]="itemsLogout" class="user-menu" [popup]="true"></p-tieredmenu>
-        </ng-template>
-      </p-menubar>
-    </div>
+<div class="card">
+  <div class="p-grid">
+    <p-menubar [model]="items">
+      <ng-template pTemplate="end">
+        <p-tag severity="info" value="Gabriel S |" />
+        <a pButton icon="pi pi-user" class="p-button-text" (click)="menuLogout.toggle($event)"></a>
+        <!-- Menu de logout -->
+        <p-tieredmenu #menuLogout [model]="itemsLogout" class="user-menu" [popup]="true"></p-tieredmenu>
+      </ng-template>
+    </p-menubar>
   </div>
-
-
-
+</div>

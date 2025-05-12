@@ -128,3 +128,9 @@
     width: 40%;
   }
 }
+
+
+:host ::ng-deep .messageerror .p-message-text {
+  font-size: 0.75rem;
+  color: #e74c3c;
+}

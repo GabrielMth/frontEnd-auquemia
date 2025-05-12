@@ -22,6 +22,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { DatePickerModule } from 'primeng/datepicker';
 import { NgxCurrencyDirective } from 'ngx-currency';
+import { Message } from 'primeng/message';
 
 
 @Component({
@@ -30,7 +31,7 @@ import { NgxCurrencyDirective } from 'ngx-currency';
     DividerModule, SelectModule, ButtonModule, AutoCompleteModule, FormsModule,
     InputTextModule, IconFieldModule, InputIconModule, CommonModule, TableModule,
     CardModule, TextareaModule, TagModule, ToastModule, ConfirmDialog, DatePickerModule,
-    InputTextModule, NgxCurrencyDirective],
+    InputTextModule, NgxCurrencyDirective, Message],
   templateUrl: './newlancamento.component.html',
   styleUrl: './newlancamento.component.scss',
   providers: [ConfirmationService, MessageService]
