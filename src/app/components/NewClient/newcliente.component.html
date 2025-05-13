@@ -37,7 +37,8 @@
             <p-iftalabel>
               <p-inputmask [mask]="isPessoaJuridica ? '99.999.999/9999-99' : '999.999.999-99'" autocomplete="off"
                 required [name]="isPessoaJuridica ? 'cnpj' : 'cpf'" [(ngModel)]="cpfOuCnpj" #cpfControl="ngModel"
-                (onBlur)="isPessoaJuridica ? onCnpjBlur() : onCpfBlur()" />
+                (onBlur)="onCpfCnpjBlur()"
+                (onFocus)="onCpfCnpjFocus()" />
               <label [for]="isPessoaJuridica ? 'cnpj' : 'cpf'">{{ isPessoaJuridica ? 'CNPJ' : 'CPF' }}</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -46,15 +47,15 @@
             [text]="isPessoaJuridica ? 'CNPJ é obrigatório' : 'CPF é obrigatório'"
             error="required"></app-message-valid-forms>
 
-          <div *ngIf="isPessoaJuridica == true && cnpjInvalido == true && cpfControl?.value" class="messageerror">
+          <div *ngIf="!isPessoaJuridica && cpfInvalido && cpfControl?.valid" class="messageerror">
             <p-message severity="error" variant="simple" size="small">
-              Esse CNPJ não existe !
+              Esse CPF não existe!
             </p-message>
           </div>
 
-          <div *ngIf="!isPessoaJuridica && cpfInvalido && cpfControl?.value" class="messageerror">
+          <div *ngIf="isPessoaJuridica && cnpjInvalido && cpfControl?.valid" class="messageerror">
             <p-message severity="error" variant="simple" size="small">
-              Esse CPF não existe!
+              Esse CNPJ não existe!
             </p-message>
           </div>
 
@@ -200,16 +201,10 @@
 
     <ng-template #footer>
       <div class="dialog-footer">
-        <p-button label="Salvar" icon="pi pi-save" [raised]="true"
-          [disabled]="!form.valid || cpfInvalido || cepInvalido" (onClick)="confirmarCadastroPessoa(form)" />
+        <p-button label="Salvar" icon="pi pi-save" [raised]="true" (onClick)="confirmarCadastroPessoa(form)" />
       </div>
     </ng-template>
   </p-dialog>
-
-
-
-
-
 
   <app-clientinfo *ngIf="visibleDialogDetailsClient" [visibleInfoClientDialog]="visibleDialogDetailsClient"
     (closedDialogDetails)="fecharDialogDetails()">

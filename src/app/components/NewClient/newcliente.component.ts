@@ -155,73 +155,57 @@ export class NewclienteComponent {
 
 
   validarCPF(cpf: string): boolean {
-    cpf = cpf.replace(/[^\d]+/g, '');
+  cpf = cpf.replace(/\D/g, '');
+  if (cpf.length !== 11) return false;
 
-    if (cpf.length !== 11) {
-      return false;
-    }
-
-
-    let soma = 0;
-    let peso = 10;
-    for (let i = 0; i < 9; i++) {
-      soma += parseInt(cpf.charAt(i)) * peso--;
-    }
-    let resto = soma % 11;
-    let digito1 = resto < 2 ? 0 : 11 - resto;
-
-
-    soma = 0;
-    peso = 11;
-    for (let i = 0; i < 10; i++) {
-      soma += parseInt(cpf.charAt(i)) * peso--;
-    }
-    resto = soma % 11;
-    let digito2 = resto < 2 ? 0 : 11 - resto;
-
-    return cpf.charAt(9) === digito1.toString() && cpf.charAt(10) === digito2.toString();
+  let soma = 0, peso = 10;
+  for (let i = 0; i < 9; i++) {
+    soma += parseInt(cpf[i]) * peso--;
   }
+  let digito1 = (soma % 11 < 2) ? 0 : 11 - (soma % 11);
 
-  validarCnpj(cnpj: string): boolean {
-
-    cnpj = cnpj.replace(/[^\d]+/g, '');
-
-
-    if (cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) {
-      return false;
-    }
-
-
-    let soma = 0;
-    let peso = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-    for (let i = 0; i < 12; i++) {
-      soma += parseInt(cnpj.charAt(i)) * peso[i];
-    }
-    let resto = soma % 11;
-    let digito1 = (resto < 2) ? 0 : 11 - resto;
-
-
-    soma = 0;
-    peso = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-    for (let i = 0; i < 13; i++) {
-      soma += parseInt(cnpj.charAt(i)) * peso[i];
-    }
-    resto = soma % 11;
-    let digito2 = (resto < 2) ? 0 : 11 - resto;
-
-    return cnpj.charAt(12) === digito1.toString() && cnpj.charAt(13) === digito2.toString();
+  soma = 0, peso = 11;
+  for (let i = 0; i < 10; i++) {
+    soma += parseInt(cpf[i]) * peso--;
   }
+  let digito2 = (soma % 11 < 2) ? 0 : 11 - (soma % 11);
 
-  onCpfBlur() {
-    const cpf = this.cpfOuCnpj?.replace(/\D/g, '');
-    this.cpfInvalido = !this.validarCPF(cpf);
+  return cpf[9] === digito1.toString() && cpf[10] === digito2.toString();
+}
+
+validarCnpj(cnpj: string): boolean {
+  cnpj = cnpj.replace(/\D/g, '');
+  if (cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) return false;
+
+  let peso1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+  let peso2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+  let soma = peso1.reduce((acc, val, i) => acc + parseInt(cnpj[i]) * val, 0);
+  let digito1 = (soma % 11 < 2) ? 0 : 11 - (soma % 11);
+
+  soma = peso2.reduce((acc, val, i) => acc + parseInt(cnpj[i]) * val, 0);
+  let digito2 = (soma % 11 < 2) ? 0 : 11 - (soma % 11);
+
+  return cnpj[12] === digito1.toString() && cnpj[13] === digito2.toString();
+}
+
+  onCpfCnpjBlur(): void {
+  const valor = this.cpfOuCnpj?.replace(/\D/g, '') || '';
+
+  if (this.isPessoaJuridica) {
+    const valido = this.validarCnpj(valor);
+    this.cnpjInvalido = !valido;
+    this.cpfInvalido = null;
+  } else {
+    const valido = this.validarCPF(valor);
+    this.cpfInvalido = !valido;
     this.cnpjInvalido = null;
   }
+}
 
-  onCnpjBlur() {
-    const cnpj = this.cpfOuCnpj?.replace(/\D/g, '');
-    this.cnpjInvalido = !this.validarCnpj(cnpj);
-    this.cpfInvalido = null;
-  }
+onCpfCnpjFocus(): void {
+  this.cpfInvalido = null;
+  this.cnpjInvalido = null;
+}
 
 }
