@@ -38,7 +38,7 @@
               <p-inputmask [mask]="isPessoaJuridica ? '99.999.999/9999-99' : '999.999.999-99'" autocomplete="off"
                 required [name]="isPessoaJuridica ? 'cnpj' : 'cpf'" [(ngModel)]="cpfOuCnpj" #cpfControl="ngModel"
                 (onBlur)="onCpfCnpjBlur()"
-                (onFocus)="onCpfCnpjFocus()" />
+                (onFocus)="onCpfCnpjFocus()"/>
               <label [for]="isPessoaJuridica ? 'cnpj' : 'cpf'">{{ isPessoaJuridica ? 'CNPJ' : 'CPF' }}</label>
             </p-iftalabel>
           </p-inputgroup>

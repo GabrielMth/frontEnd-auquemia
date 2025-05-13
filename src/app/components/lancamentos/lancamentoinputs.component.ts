@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { DatePicker } from 'primeng/datepicker';
-import { FloatLabel } from 'primeng/floatlabel';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { CardModule } from 'primeng/card';
+
 import { NewlancamentoComponent } from '../NewLancamento/newlancamento.component';
+import { SharedFormModule } from '../../sharedmodules/shared-form.module';
 
 
 
@@ -16,7 +12,7 @@ import { NewlancamentoComponent } from '../NewLancamento/newlancamento.component
   selector: 'lancamentosforms',
   templateUrl: './lancamentoinputs.component.html',
   standalone: true,
-  imports: [FormsModule, DatePicker, FloatLabel, InputTextModule, ButtonModule, TableModule, CommonModule, TooltipModule, CardModule, NewlancamentoComponent],
+  imports: [TableModule,TooltipModule, CardModule, NewlancamentoComponent,SharedFormModule],
   styleUrl: './lancamentoinputs.component.scss'
 })
 export class LancamentoComponent {

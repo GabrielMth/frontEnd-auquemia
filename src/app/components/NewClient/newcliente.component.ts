@@ -1,24 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { InputIconModule } from 'primeng/inputicon';
-import { IconFieldModule } from 'primeng/iconfield';
-import { FormsModule, NgForm } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
+import { NgForm } from '@angular/forms';
 import { Dialog } from 'primeng/dialog';
-import { DividerModule } from 'primeng/divider';
-import { InputGroupModule } from 'primeng/inputgroup';
-import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { FloatLabel } from 'primeng/floatlabel';
-import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { InputMaskModule } from 'primeng/inputmask';
 import { Message } from 'primeng/message';
-import { Checkbox } from 'primeng/checkbox';
+import { SharedFormModule } from '../../sharedmodules/shared-form.module';
 
 
 import { MessagesValidFormsComponent } from '../MessagesValidForms/messages-valid-forms.component';
@@ -27,12 +18,9 @@ import { ClientinfoComponent } from '../NewClientDetails/clientinfo.component'
 
 @Component({
   selector: 'app-newcliente',
-  imports: [DropdownModule, FloatLabel,
-    IftaLabelModule, InputGroupAddonModule, InputGroupModule,
-    DividerModule, Dialog, ButtonModule, InputTextModule,
-    FormsModule, IconFieldModule, InputIconModule, CommonModule,
-    ConfirmDialog, ToastModule, ClientinfoComponent, InputMaskModule,
-    MessagesValidFormsComponent, Message, Checkbox],
+  imports: [FloatLabel, IftaLabelModule, Dialog, InputIconModule,
+            ConfirmDialog, ToastModule, ClientinfoComponent,
+            MessagesValidFormsComponent, Message, SharedFormModule],
   templateUrl: './newcliente.component.html',
   styleUrl: './newcliente.component.scss',
   providers: [ConfirmationService, MessageService]
@@ -73,6 +61,11 @@ export class NewclienteComponent {
     this.closedCadastro.emit();
     form.reset();
     form.resetForm();
+
+    this.isPessoaJuridica = null;
+    this.cpfOuCnpj = '';
+    this.cpfInvalido = false;
+    this.cnpjInvalido = false;
   }
 
   fecharDialogDetails() {
@@ -102,8 +95,8 @@ export class NewclienteComponent {
         this.visibleDialogDetailsClient = true;
         this.visibleDialogNewClient = false;
 
-        this.cpfInvalido = null;
-        this.cnpjInvalido = null;
+        this.cpfInvalido = false;
+        this.cnpjInvalido = false;
 
 
       },
@@ -155,57 +148,59 @@ export class NewclienteComponent {
 
 
   validarCPF(cpf: string): boolean {
-  cpf = cpf.replace(/\D/g, '');
-  if (cpf.length !== 11) return false;
+    cpf = cpf.replace(/\D/g, '');
+    if (cpf.length !== 11) return false;
 
-  let soma = 0, peso = 10;
-  for (let i = 0; i < 9; i++) {
-    soma += parseInt(cpf[i]) * peso--;
+    let soma = 0, peso = 10;
+    for (let i = 0; i < 9; i++) {
+      soma += parseInt(cpf[i]) * peso--;
+    }
+    let digito1 = (soma % 11 < 2) ? 0 : 11 - (soma % 11);
+
+    soma = 0, peso = 11;
+    for (let i = 0; i < 10; i++) {
+      soma += parseInt(cpf[i]) * peso--;
+    }
+    let digito2 = (soma % 11 < 2) ? 0 : 11 - (soma % 11);
+
+    return cpf[9] === digito1.toString() && cpf[10] === digito2.toString();
   }
-  let digito1 = (soma % 11 < 2) ? 0 : 11 - (soma % 11);
 
-  soma = 0, peso = 11;
-  for (let i = 0; i < 10; i++) {
-    soma += parseInt(cpf[i]) * peso--;
+  validarCnpj(cnpj: string): boolean {
+    cnpj = cnpj.replace(/\D/g, '');
+    if (cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) return false;
+
+    let peso1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    let peso2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+    let soma = peso1.reduce((acc, val, i) => acc + parseInt(cnpj[i]) * val, 0);
+    let digito1 = (soma % 11 < 2) ? 0 : 11 - (soma % 11);
+
+    soma = peso2.reduce((acc, val, i) => acc + parseInt(cnpj[i]) * val, 0);
+    let digito2 = (soma % 11 < 2) ? 0 : 11 - (soma % 11);
+
+    return cnpj[12] === digito1.toString() && cnpj[13] === digito2.toString();
   }
-  let digito2 = (soma % 11 < 2) ? 0 : 11 - (soma % 11);
-
-  return cpf[9] === digito1.toString() && cpf[10] === digito2.toString();
-}
-
-validarCnpj(cnpj: string): boolean {
-  cnpj = cnpj.replace(/\D/g, '');
-  if (cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) return false;
-
-  let peso1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-  let peso2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-
-  let soma = peso1.reduce((acc, val, i) => acc + parseInt(cnpj[i]) * val, 0);
-  let digito1 = (soma % 11 < 2) ? 0 : 11 - (soma % 11);
-
-  soma = peso2.reduce((acc, val, i) => acc + parseInt(cnpj[i]) * val, 0);
-  let digito2 = (soma % 11 < 2) ? 0 : 11 - (soma % 11);
-
-  return cnpj[12] === digito1.toString() && cnpj[13] === digito2.toString();
-}
 
   onCpfCnpjBlur(): void {
-  const valor = this.cpfOuCnpj?.replace(/\D/g, '') || '';
+    const documentoBruto = this.cpfOuCnpj?.replace(/\D/g, '') || '';
 
-  if (this.isPessoaJuridica) {
-    const valido = this.validarCnpj(valor);
-    this.cnpjInvalido = !valido;
-    this.cpfInvalido = null;
-  } else {
-    const valido = this.validarCPF(valor);
-    this.cpfInvalido = !valido;
-    this.cnpjInvalido = null;
+    if (this.isPessoaJuridica) {
+      const valido = this.validarCnpj(documentoBruto);
+      this.cnpjInvalido = !valido;
+      this.cpfInvalido = false;
+    } else {
+      const valido = this.validarCPF(documentoBruto);
+      this.cpfInvalido = !valido;
+      this.cnpjInvalido = false;
+    }
   }
-}
 
-onCpfCnpjFocus(): void {
-  this.cpfInvalido = null;
-  this.cnpjInvalido = null;
-}
+  onCpfCnpjFocus(): void {
+    this.cpfInvalido = false;
+    this.cnpjInvalido = false;
+  }
+
+
 
 }
