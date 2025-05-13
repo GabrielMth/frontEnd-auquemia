@@ -18,6 +18,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { InputMaskModule } from 'primeng/inputmask';
 import { Message } from 'primeng/message';
+import { Checkbox } from 'primeng/checkbox';
 
 
 import { MessagesValidFormsComponent } from '../MessagesValidForms/messages-valid-forms.component';
@@ -31,7 +32,7 @@ import { ClientinfoComponent } from '../NewClientDetails/clientinfo.component'
     DividerModule, Dialog, ButtonModule, InputTextModule,
     FormsModule, IconFieldModule, InputIconModule, CommonModule,
     ConfirmDialog, ToastModule, ClientinfoComponent, InputMaskModule,
-    MessagesValidFormsComponent,Message],
+    MessagesValidFormsComponent, Message, Checkbox],
   templateUrl: './newcliente.component.html',
   styleUrl: './newcliente.component.scss',
   providers: [ConfirmationService, MessageService]
@@ -53,6 +54,13 @@ export class NewclienteComponent {
   status: boolean = true;
   statusOptions: [] = [];
 
+  cpf = '';
+
+
+  isPessoaJuridica: boolean | null = null;
+  cpfOuCnpj: string = '';
+  cnpjInvalido: boolean | null = null;
+  cpfInvalido: boolean | null = null;
   cepInvalido: boolean | null = null;
   cep: string = '';
   bairro = '';
@@ -69,7 +77,6 @@ export class NewclienteComponent {
 
   fecharDialogDetails() {
     this.visibleDialogDetailsClient = false;
-
   }
 
 
@@ -95,6 +102,10 @@ export class NewclienteComponent {
         this.visibleDialogDetailsClient = true;
         this.visibleDialogNewClient = false;
 
+        this.cpfInvalido = null;
+        this.cnpjInvalido = null;
+
+
       },
       reject: () => {
         this.messageService.add({
@@ -106,6 +117,7 @@ export class NewclienteComponent {
     });
   }
 
+
   onCepBlur() {
 
     const cepBruto: string = this.cep;
@@ -114,7 +126,6 @@ export class NewclienteComponent {
 
       this.http.get<any>(`https://viacep.com.br/ws/${cepBruto}/json/`).subscribe({
         next: (res) => {
-          console.log("Resposta do ViaCEP: ", res);
           if (res.erro) {
             this.cepInvalido = true;
             this.limparEndereco();
@@ -140,6 +151,77 @@ export class NewclienteComponent {
     this.cidade = '';
     this.estado = '';
     this.rua = '';
+  }
+
+
+  validarCPF(cpf: string): boolean {
+    cpf = cpf.replace(/[^\d]+/g, '');
+
+    if (cpf.length !== 11) {
+      return false;
+    }
+
+
+    let soma = 0;
+    let peso = 10;
+    for (let i = 0; i < 9; i++) {
+      soma += parseInt(cpf.charAt(i)) * peso--;
+    }
+    let resto = soma % 11;
+    let digito1 = resto < 2 ? 0 : 11 - resto;
+
+
+    soma = 0;
+    peso = 11;
+    for (let i = 0; i < 10; i++) {
+      soma += parseInt(cpf.charAt(i)) * peso--;
+    }
+    resto = soma % 11;
+    let digito2 = resto < 2 ? 0 : 11 - resto;
+
+    return cpf.charAt(9) === digito1.toString() && cpf.charAt(10) === digito2.toString();
+  }
+
+  validarCnpj(cnpj: string): boolean {
+
+    cnpj = cnpj.replace(/[^\d]+/g, '');
+
+
+    if (cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) {
+      return false;
+    }
+
+
+    let soma = 0;
+    let peso = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    for (let i = 0; i < 12; i++) {
+      soma += parseInt(cnpj.charAt(i)) * peso[i];
+    }
+    let resto = soma % 11;
+    let digito1 = (resto < 2) ? 0 : 11 - resto;
+
+
+    soma = 0;
+    peso = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    for (let i = 0; i < 13; i++) {
+      soma += parseInt(cnpj.charAt(i)) * peso[i];
+    }
+    resto = soma % 11;
+    let digito2 = (resto < 2) ? 0 : 11 - resto;
+
+    return cnpj.charAt(12) === digito1.toString() && cnpj.charAt(13) === digito2.toString();
+  }
+
+  onCpfBlur() {
+    const cpf = this.cpfOuCnpj?.replace(/\D/g, '');
+    this.cpfInvalido = !this.validarCPF(cpf);
+    this.cnpjInvalido = null;
+  }
+
+  onCnpjBlur() {
+    const cnpj = this.cpfOuCnpj?.replace(/\D/g, '');
+    this.cnpjInvalido = !this.validarCnpj(cnpj);
+    this.cpfInvalido = null;
   }
 
 }

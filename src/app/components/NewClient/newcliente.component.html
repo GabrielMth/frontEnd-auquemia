@@ -2,7 +2,7 @@
   <p-confirmDialog></p-confirmDialog>
   <p-toast></p-toast>
   <p-dialog [(visible)]="visibleDialogNewClient" [modal]="true" header="Cadastro de Cliente"
-    [style]="{ width: '40rem', height: '40rem' }" (onHide)="fecharDialogCadastro(form)">
+    [style]="{ width: '40rem', height: '45rem' }" (onHide)="fecharDialogCadastro(form)">
     <p-divider type="dotted" />
 
     <form #form="ngForm" autocomplete="off">
@@ -23,6 +23,11 @@
           error="minlength"></app-message-valid-forms>
       </div>
 
+      <div class="input-row">
+        <p-checkbox size="small" name="isPessoaJuridica" [(ngModel)]="isPessoaJuridica" binary="true"
+          inputId="pjCheck"></p-checkbox>
+        <label for="pjCheck"> Cliente Jurídico (s/n)</label>
+      </div>
       <div class="input-row two-columns">
         <div class="input-col">
           <p-inputgroup>
@@ -30,13 +35,29 @@
               <i class="pi pi-address-book"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <p-inputmask id="cpf" mask="999.999.999-99" autocomplete="off" required name="cpf" ngModel
-                #cpfControl="ngModel" />
-              <label for="cpf">CPF</label>
+              <p-inputmask [mask]="isPessoaJuridica ? '99.999.999/9999-99' : '999.999.999-99'" autocomplete="off"
+                required [name]="isPessoaJuridica ? 'cnpj' : 'cpf'" [(ngModel)]="cpfOuCnpj" #cpfControl="ngModel"
+                (onBlur)="isPessoaJuridica ? onCnpjBlur() : onCpfBlur()" />
+              <label [for]="isPessoaJuridica ? 'cnpj' : 'cpf'">{{ isPessoaJuridica ? 'CNPJ' : 'CPF' }}</label>
             </p-iftalabel>
           </p-inputgroup>
-          <app-message-valid-forms [control]="cpfControl" text="CPF é obrigatório"
+
+          <app-message-valid-forms [control]="cpfControl"
+            [text]="isPessoaJuridica ? 'CNPJ é obrigatório' : 'CPF é obrigatório'"
             error="required"></app-message-valid-forms>
+
+          <div *ngIf="isPessoaJuridica == true && cnpjInvalido == true && cpfControl?.value" class="messageerror">
+            <p-message severity="error" variant="simple" size="small">
+              Esse CNPJ não existe !
+            </p-message>
+          </div>
+
+          <div *ngIf="!isPessoaJuridica && cpfInvalido && cpfControl?.value" class="messageerror">
+            <p-message severity="error" variant="simple" size="small">
+              Esse CPF não existe!
+            </p-message>
+          </div>
+
         </div>
 
         <div class="input-col">
@@ -113,28 +134,28 @@
         <div class="input-col">
           <p-inputgroup>
             <p-inputgroup-addon>
-              <i class="pi pi-map"></i>
+              <i class="pi pi-warehouse"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="rua" class="inputuseropen1-dialog" required name="rua" [(ngModel)]="rua"
-                #ruaControl="ngModel" />
-              <label for="rua">Logradouro (Rua)</label>
+              <input pInputText id="numcasa" class="inputuseropen1-dialog" required name="numcasa" ngModel
+                #numCasaControl="ngModel" />
+              <label for="numcasa">Número da Casa</label>
             </p-iftalabel>
           </p-inputgroup>
-          <app-message-valid-forms [control]="ruaControl" text="O nome da rua é obrigatório"
-            error="required"></app-message-valid-forms>
+          <app-message-valid-forms [control]="numCasaControl" text="O número da casa é obrigatório" error="required">
+          </app-message-valid-forms>
         </div>
       </div>
 
       <div class="input-col">
         <p-inputgroup>
           <p-inputgroup-addon>
-            <i class="pi pi-warehouse"></i>
+            <i class="pi pi-map"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <input pInputText id="numcasa" class="inputuseropen1-dialog" required name="numcasa" ngModel
-              #numCasaControl="ngModel" />
-            <label for="numcasa">Número da Casa</label>
+            <input pInputText id="rua" class="inputuseropen1-dialog" required name="rua" [(ngModel)]="rua"
+              #ruaControl="ngModel" />
+            <label for="rua">Logradouro (Rua)</label>
           </p-iftalabel>
         </p-inputgroup>
         <app-message-valid-forms [control]="ruaControl" text="O nome da rua é obrigatório"
@@ -179,8 +200,8 @@
 
     <ng-template #footer>
       <div class="dialog-footer">
-        <p-button label="Salvar" icon="pi pi-save" [raised]="true" [disabled]="!form.valid"
-          (onClick)="confirmarCadastroPessoa(form)" />
+        <p-button label="Salvar" icon="pi pi-save" [raised]="true"
+          [disabled]="!form.valid || cpfInvalido || cepInvalido" (onClick)="confirmarCadastroPessoa(form)" />
       </div>
     </ng-template>
   </p-dialog>
