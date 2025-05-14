@@ -32,5 +32,6 @@ export const appConfig: ApplicationConfig = {
       inputMode: NgxCurrencyInputMode.Financial
     }),
     provideHttpClient(),
+
   ],
 };

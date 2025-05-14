@@ -14,23 +14,25 @@ import { SharedFormModule } from '../../sharedmodules/shared-form.module';
 
 import { MessagesValidFormsComponent } from '../MessagesValidForms/messages-valid-forms.component';
 import { ClientinfoComponent } from '../NewClientDetails/clientinfo.component'
+import { CepService } from '../../services/cep-service';
 
 
 @Component({
   selector: 'app-newcliente',
   imports: [FloatLabel, IftaLabelModule, Dialog, InputIconModule,
-            ConfirmDialog, ToastModule, ClientinfoComponent,
-            MessagesValidFormsComponent, Message, SharedFormModule],
+    ConfirmDialog, ToastModule, ClientinfoComponent,
+    MessagesValidFormsComponent, Message, SharedFormModule],
   templateUrl: './newcliente.component.html',
   styleUrl: './newcliente.component.scss',
-  providers: [ConfirmationService, MessageService]
+  providers: [ConfirmationService, MessageService, CepService]
 })
 export class NewclienteComponent {
 
   constructor(
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private cepService: CepService
   ) { }
 
   @ViewChild('form') form!: NgForm;
@@ -110,42 +112,26 @@ export class NewclienteComponent {
     });
   }
 
-
   onCepBlur() {
-
-    const cepBruto: string = this.cep;
-
-    if (cepBruto) {
-
-      this.http.get<any>(`https://viacep.com.br/ws/${cepBruto}/json/`).subscribe({
-        next: (res) => {
-          if (res.erro) {
-            this.cepInvalido = true;
-            this.limparEndereco();
-          } else {
-            this.cepInvalido = false;
-            this.bairro = res.bairro;
-            this.cidade = res.localidade;
-            this.estado = res.uf;
-            this.rua = res.logradouro;
-          }
-        },
-        error: () => {
+    this.cepService.pesquisarCEP(this.cep).subscribe({
+      next: (res) => {
+        if (res.erro) {
           this.cepInvalido = true;
-          this.limparEndereco();
+          this.bairro = this.cidade = this.estado = this.rua = '';
+        } else {
+          this.cepInvalido = false;
+          this.bairro = res.bairro;
+          this.cidade = res.localidade;
+          this.estado = res.uf;
+          this.rua = res.logradouro;
         }
-      });
-    }
+      },
+      error: () => {
+        this.cepInvalido = true;
+        this.bairro = this.cidade = this.estado = this.rua = '';
+      }
+    });
   }
-
-
-  limparEndereco() {
-    this.bairro = '';
-    this.cidade = '';
-    this.estado = '';
-    this.rua = '';
-  }
-
 
   validarCPF(cpf: string): boolean {
     cpf = cpf.replace(/\D/g, '');
