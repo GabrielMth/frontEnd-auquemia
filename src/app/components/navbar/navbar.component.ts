@@ -66,11 +66,11 @@ export class NavbarComponent implements OnInit {
       },
       {
         label: 'Produtos',
-        icon: 'pi pi-money-bill'
+        icon: 'pi pi-box'
       },
       {
         label: 'Vendas',
-        icon: 'pi pi-money-bill'
+        icon: 'pi pi-shopping-cart'
       },
     ]
 

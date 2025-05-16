@@ -16,28 +16,45 @@
         (onClick)="abrirCadastroCliente()"> </p-button>
     </div>
 
-    <p-table class="tableclientes" [value]="pessoastemporario" [paginator]="true" [stripedRows]="true" showGridlines
-      [rows]="5" [tableStyle]="{ 'min-width': '50rem' }" [rowsPerPageOptions]="[5, 10, 20]" selectionMode="single">
-      <ng-template pTemplate="header">
-        <tr>
-          <th pSortableColumn="nome" style="width:25%">Nome<p-sortIcon field="nome" /> </th>
-          <th style="width:25%">Bairro</th>
-          <th style="width:25%">CEP</th>
-          <th style="width:25%">CPF</th>
-          <th style="width:25%">Contato</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-pessoas>
-        <tr [pSelectableRow]="pessoas" (dblclick)="onRowDoubleClick()">
-          <td>{{ pessoas.nome }}</td>
-          <td>{{ pessoas.bairro }}</td>
-          <td>{{ pessoas.cep }}</td>
-          <td>{{ pessoas.cpf }}</td>
-          <td>{{ pessoas.contato }}</td>
-        </tr>
-      </ng-template>
-    </p-table>
+    <div class="table-wrapper">
+      <p-table class="tableclientes"
+      [totalRecords]="totalRegistros"
+      [loading]="false"
+      [value]="clientes"
+      [lazy]="true"
+      [paginator]="true"
+      [stripedRows]="true"
+      [rowsPerPageOptions]="[10, 15, 20, 30]"
+      [rows]="15"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      (onLazyLoad)="carregarClientesPaginado($event)"
+      showGridlines
+      selectionMode="single">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="nome" style="width:30%">Nome<p-sortIcon field="nome" /> </th>
+            <th style="width:20%">Documento</th>
+            <th style="width:15%">CEP</th>
+            <th style="width:15%">Bairro</th>
+            <th style="width:30%">Contato</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-clientes>
+          <tr [pSelectableRow]="clientes" (dblclick)="onRowDoubleClick()">
+            <td>{{ clientes.nome }}</td>
+            <td>{{ clientes.documento }}</td>
+            <td>{{ clientes.endereco.cep }}</td>
+            <td>{{ clientes.endereco.bairro }}</td>
+            <td>{{ clientes.celular }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
 
+      <div *ngIf="carregando" class="spinner-overlay flex flex-column justify-center align-items-center">
+        <p-progress-spinner ariaLabel="loading"></p-progress-spinner>
+        <p class="spinner-label">Aguarde...</p>
+      </div>
+    </div>
 
     <p-dialog [(visible)]="visibleDialogDetails" [modal]="true" header="Detalhes do Cliente"
       [style]="{ width: '40rem', height: '40rem' }">
