@@ -17,10 +17,11 @@ export class ClienteService {
     return this.http.post<Cliente>(this.apiUrl, cliente);
   }
 
-  consultarPaginado(pagina: number, tamanho: number): Observable<PaginacaoDTO<Cliente>> {
+  consultarPaginado(pagina: number, tamanho: number, campoOrdenacao: string, direcao: string): Observable<PaginacaoDTO<Cliente>> {
     const params = {
       page: pagina,
-      size: tamanho
+      size: tamanho,
+      sort: `${campoOrdenacao},${direcao}`
     };
     return this.http.get<PaginacaoDTO<Cliente>>(this.apiUrl, { params });
   }

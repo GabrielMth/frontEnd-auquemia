@@ -225,7 +225,6 @@ export class NewclienteComponent {
     this.clienteService.criar(cliente).subscribe({
       next: (res) => {
         this.clienteDetalhe = res;
-        console.log(this.clienteDetalhe);
         this.messageService.add({
           severity: 'success',
           icon: 'pi-thumbs-up-fill',

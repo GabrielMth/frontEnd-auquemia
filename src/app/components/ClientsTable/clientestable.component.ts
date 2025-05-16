@@ -54,8 +54,10 @@ export class ClientesTableComponent {
 
     const pagina = event.first / event.rows;
     const tamanho = event.rows;
+    const campoOrdenacao = event.sortField ?? 'nome';
+    const direcaoOrdenacao = event.sortOrder === 1 ? 'asc' : 'desc';
 
-    this.clienteService.consultarPaginado(pagina, tamanho).subscribe({
+    this.clienteService.consultarPaginado(pagina, tamanho, campoOrdenacao, direcaoOrdenacao).subscribe({
       next: (res) => {
         this.clientes = res.conteudo;
         this.totalRegistros = res.totalElementos;
