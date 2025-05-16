@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { InputIconModule } from 'primeng/inputicon';
 import { NgForm } from '@angular/forms';
@@ -14,7 +13,10 @@ import { SharedFormModule } from '../../sharedmodules/shared-form.module';
 
 import { MessagesValidFormsComponent } from '../MessagesValidForms/messages-valid-forms.component';
 import { ClientinfoComponent } from '../NewClientDetails/clientinfo.component'
-import { CepService } from '../../services/cep-service';
+import { CepService } from '../../services/cep.service';
+import { ClienteService } from '../../services/cliente.service';
+import { Cliente } from '../../models/cliente.model';
+
 
 
 @Component({
@@ -31,41 +33,60 @@ export class NewclienteComponent {
   constructor(
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private http: HttpClient,
-    private cepService: CepService
+    private cepService: CepService,
+    private clienteService: ClienteService
   ) { }
 
   @ViewChild('form') form!: NgForm;
-  @Input() visibleDialogNewClient: boolean = false;
-  @Output() closedCadastro = new EventEmitter<void>();
 
   visibleDialogDetailsClient: boolean = false;
 
-  status: boolean = true;
-  statusOptions: [] = [];
+  @Input() visibleDialogNewClient: boolean = false;
 
-  cpf = '';
+  @Output() closedCadastro = new EventEmitter<void>();
 
 
   isPessoaJuridica: boolean | null = null;
-  cpfOuCnpj: string = '';
   cnpjInvalido: boolean | null = null;
   cpfInvalido: boolean | null = null;
   cepInvalido: boolean | null = null;
-  cep: string = '';
-  bairro = '';
-  cidade = '';
-  estado = '';
-  rua = '';
 
+  clienteFormulario: Cliente = {
+    nome: '',
+    documento: '',
+    ativo: true,
+    celular: '',
+    telefone: '',
+    endereco: {
+      cep: '',
+      rua: '',
+      bairro: '',
+      cidade: '',
+      estado: ''
+    }
+  };
+
+  clienteDetalhe: Cliente = {
+    nome: '',
+    documento: '',
+    ativo: true,
+    celular: '',
+    telefone: '',
+    endereco: {
+      cep: '',
+      rua: '',
+      bairro: '',
+      cidade: '',
+      estado: ''
+    }
+  };
 
   fecharDialogCadastro(form: any) {
     this.closedCadastro.emit();
-    form.reset();
+
     form.resetForm();
 
     this.isPessoaJuridica = null;
-    this.cpfOuCnpj = '';
     this.cpfInvalido = false;
     this.cnpjInvalido = false;
   }
@@ -74,61 +95,23 @@ export class NewclienteComponent {
     this.visibleDialogDetailsClient = false;
   }
 
-
-  confirmarCadastroPessoa(form: any) {
-    this.confirmationService.confirm({
-      message: 'Você tem certeza que deseja cadastrar este cliente?',
-      header: 'Confirmar cadastro',
-      icon: 'pi pi-exclamation-triangle',
-      acceptLabel: 'Sim',
-      rejectLabel: 'Cancelar',
-      acceptButtonStyleClass: 'p-button-success',
-      rejectButtonStyleClass: 'p-button-secondary',
-      accept: () => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Cadastro Confirmado',
-          detail: 'O cliente foi cadastrado com sucesso.',
-        });
-
-        form.reset();
-        form.resetForm();
-
-        this.visibleDialogDetailsClient = true;
-        this.visibleDialogNewClient = false;
-
-        this.cpfInvalido = false;
-        this.cnpjInvalido = false;
-
-
-      },
-      reject: () => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Ação Cancelada',
-          detail: 'O cadastro não foi realizado.'
-        });
-      }
-    });
-  }
-
   onCepBlur() {
-    this.cepService.pesquisarCEP(this.cep).subscribe({
+    this.cepService.pesquisarCEP(this.clienteFormulario.endereco.cep).subscribe({
       next: (res) => {
         if (res.erro) {
           this.cepInvalido = true;
-          this.bairro = this.cidade = this.estado = this.rua = '';
+          this.clienteFormulario.endereco.bairro = this.clienteFormulario.endereco.cidade = this.clienteFormulario.endereco.estado = this.clienteFormulario.endereco.rua = '';
         } else {
           this.cepInvalido = false;
-          this.bairro = res.bairro;
-          this.cidade = res.localidade;
-          this.estado = res.uf;
-          this.rua = res.logradouro;
+          this.clienteFormulario.endereco.bairro = res.bairro;
+          this.clienteFormulario.endereco.cidade = res.localidade;
+          this.clienteFormulario.endereco.estado = res.uf;
+          this.clienteFormulario.endereco.rua = res.logradouro;
         }
       },
       error: () => {
         this.cepInvalido = true;
-        this.bairro = this.cidade = this.estado = this.rua = '';
+        this.clienteFormulario.endereco.bairro = this.clienteFormulario.endereco.cidade = this.clienteFormulario.endereco.estado = this.clienteFormulario.endereco.rua = '';
       }
     });
   }
@@ -169,7 +152,7 @@ export class NewclienteComponent {
   }
 
   onCpfCnpjBlur(): void {
-    const documentoBruto = this.cpfOuCnpj?.replace(/\D/g, '') || '';
+    const documentoBruto = this.clienteFormulario.documento?.replace(/\D/g, '') || '';
 
     if (this.isPessoaJuridica) {
       const valido = this.validarCnpj(documentoBruto);
@@ -185,6 +168,110 @@ export class NewclienteComponent {
   onCpfCnpjFocus(): void {
     this.cpfInvalido = false;
     this.cnpjInvalido = false;
+  }
+
+
+  enviarFormulario(form: NgForm) {
+
+    if (!form.valid) {
+      this.messageService.add({
+        severity: 'warn',
+        icon: 'pi-bell',
+        summary: 'Formulário inválido',
+        detail: 'Por favor, preencha corretamente todos os campos obrigatórios com informações válidas.',
+      });
+      return;
+    }
+
+
+    if (!this.isPessoaJuridica && this.cpfInvalido) {
+      this.messageService.add({
+        severity: 'error',
+        icon: 'pi-ban',
+        summary: 'CPF incorreto',
+        detail: 'O CPF informado não existe.',
+      });
+      return;
+    }
+
+    if (this.isPessoaJuridica && this.cnpjInvalido) {
+      this.messageService.add({
+        severity: 'error',
+        icon: 'pi-ban',
+        summary: 'CNPJ incorreto',
+        detail: 'O CNPJ informado não existe.',
+      });
+      return;
+    }
+
+
+    const cliente: Cliente = {
+      nome: form.value.nome,
+      documento: this.isPessoaJuridica ? form.value.cnpj : form.value.cpf,
+      celular: form.value.celular,
+      telefone: form.value.telefone,
+      ativo: true,
+      endereco: {
+        rua: form.value.rua,
+        numero: form.value.numero,
+        bairro: form.value.bairro,
+        cep: form.value.cep,
+        cidade: form.value.cidade,
+        estado: form.value.estado
+      }
+    };
+
+
+    this.clienteService.criar(cliente).subscribe({
+      next: (res) => {
+        this.clienteDetalhe = res;
+        console.log(this.clienteDetalhe);
+        this.messageService.add({
+          severity: 'success',
+          icon: 'pi-thumbs-up-fill',
+          summary: 'Cadastro Confirmado',
+          detail: 'O cliente foi cadastrado com sucesso.',
+        });
+
+        form.resetForm();
+        this.visibleDialogNewClient = false;
+        this.visibleDialogDetailsClient = true;
+        this.cpfInvalido = false;
+        this.cnpjInvalido = false;
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          icon: 'pi-thumbs-down-fill',
+          summary: 'Erro ao cadastrar',
+          detail: 'Ocorreu um erro ao tentar cadastrar o cliente.',
+        });
+      }
+    });
+  }
+
+
+
+  confirmarCadastroPessoa(form: any) {
+    this.confirmationService.confirm({
+      message: 'Você tem certeza que deseja cadastrar este cliente?',
+      header: 'Confirmar cadastro',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Cancelar',
+      acceptButtonStyleClass: 'p-button-success',
+      rejectButtonStyleClass: 'p-button-secondary',
+      accept: () => {
+        this.enviarFormulario(form);
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Ação Cancelada',
+          detail: 'O cadastro não foi realizado.'
+        });
+      }
+    });
   }
 
 

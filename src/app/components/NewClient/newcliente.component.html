@@ -12,7 +12,7 @@
             <i class="pi pi-user"></i>
           </p-inputgroup-addon>
           <p-floatlabel variant="on">
-            <input pInputText id="nome" autocomplete="off" maxlength="50" minlength="5" name="nome" required ngModel
+            <input pInputText id="nome" autocomplete="off" maxlength="50" minlength="5" name="nome" required [(ngModel)]="clienteFormulario.nome"
               #nomeControl="ngModel" />
             <label for="nome">Nome</label>
           </p-floatlabel>
@@ -36,7 +36,7 @@
             </p-inputgroup-addon>
             <p-iftalabel>
               <p-inputmask [mask]="isPessoaJuridica ? '99.999.999/9999-99' : '999.999.999-99'" autocomplete="off"
-                required [name]="isPessoaJuridica ? 'cnpj' : 'cpf'" [(ngModel)]="cpfOuCnpj" #cpfControl="ngModel"
+                required [name]="isPessoaJuridica ? 'cnpj' : 'cpf'" [(ngModel)]="clienteFormulario.documento" #cpfControl="ngModel"
                 (onBlur)="onCpfCnpjBlur()"
                 (onFocus)="onCpfCnpjFocus()"/>
               <label [for]="isPessoaJuridica ? 'cnpj' : 'cpf'">{{ isPessoaJuridica ? 'CNPJ' : 'CPF' }}</label>
@@ -67,7 +67,7 @@
               <i class="pi pi-map-marker"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <p-inputmask id="cep" mask="99999-999" autocomplete="off" required name="cep" [(ngModel)]="cep"
+              <p-inputmask id="cep" mask="99999-999" autocomplete="off" required name="cep" [(ngModel)]="clienteFormulario.endereco.cep"
                 #cepControl="ngModel" (onBlur)="onCepBlur()" />
               <label for="cep">CEP</label>
             </p-iftalabel>
@@ -90,7 +90,7 @@
               <i class="pi pi-compass"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="bairro" class="inputuseropen1-dialog" required name="bairro" [(ngModel)]="bairro"
+              <input pInputText id="bairro" class="inputuseropen1-dialog" required name="bairro" [(ngModel)]="clienteFormulario.endereco.bairro"
                 #bairroControl="ngModel" />
               <label for="bairro">Bairro</label>
             </p-iftalabel>
@@ -105,7 +105,7 @@
               <i class="pi pi-building"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="cidade" class="inputuseropen1-dialog" required name="cidade" [(ngModel)]="cidade"
+              <input pInputText id="cidade" class="inputuseropen1-dialog" required name="cidade" [(ngModel)]="clienteFormulario.endereco.cidade"
                 #cidadeControl="ngModel" />
               <label for="cidade">Cidade</label>
             </p-iftalabel>
@@ -123,7 +123,7 @@
               <i class="pi pi-map"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="estado" class="inputuseropen1-dialog" required name="estado" [(ngModel)]="estado"
+              <input pInputText id="estado" class="inputuseropen1-dialog" required name="estado" [(ngModel)]="clienteFormulario.endereco.estado"
                 #estadoControl="ngModel" />
               <label for="estado">Estado (UF)</label>
             </p-iftalabel>
@@ -138,7 +138,7 @@
               <i class="pi pi-warehouse"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="numcasa" class="inputuseropen1-dialog" required name="numcasa" ngModel
+              <input pInputText id="numcasa" class="inputuseropen1-dialog" required name="numero" [(ngModel)]="clienteFormulario.endereco.numero"
                 #numCasaControl="ngModel" />
               <label for="numcasa">Número da Casa</label>
             </p-iftalabel>
@@ -154,7 +154,7 @@
             <i class="pi pi-map"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <input pInputText id="rua" class="inputuseropen1-dialog" required name="rua" [(ngModel)]="rua"
+            <input pInputText id="rua" class="inputuseropen1-dialog" required name="rua" [(ngModel)]="clienteFormulario.endereco.rua"
               #ruaControl="ngModel" />
             <label for="rua">Logradouro (Rua)</label>
           </p-iftalabel>
@@ -172,7 +172,7 @@
               <i class="pi pi-mobile"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <p-inputmask id="celular" mask="(99) 99999-9999" autocomplete="off" required name="celular" ngModel
+              <p-inputmask id="celular" mask="(99) 99999-9999" autocomplete="off" required name="celular" [(ngModel)]="clienteFormulario.celular"
                 #celularControl="ngModel" />
               <label for="celular">Celular</label>
             </p-iftalabel>
@@ -187,7 +187,7 @@
               <i class="pi pi-phone"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <p-inputmask id="telefone" mask="(99) 9999-9999" autocomplete="off" name="telefone" ngModel />
+              <p-inputmask id="telefone" mask="(99) 9999-9999" autocomplete="off" name="telefone" [(ngModel)]="clienteFormulario.telefone" />
               <label for="telefone">Telefone (Opcional)</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -206,8 +206,8 @@
     </ng-template>
   </p-dialog>
 
-  <app-clientinfo *ngIf="visibleDialogDetailsClient" [visibleInfoClientDialog]="visibleDialogDetailsClient"
-    (closedDialogDetails)="fecharDialogDetails()">
+  <app-clientinfo [visibleInfoClientDialog]="visibleDialogDetailsClient"
+    (closedDialogDetails)="fecharDialogDetails()" [cliente]="clienteDetalhe">
   </app-clientinfo>
 
 

@@ -64,6 +64,14 @@ export class NavbarComponent implements OnInit {
         label: 'Contas á Receber',
         icon: 'pi pi-money-bill'
       },
+      {
+        label: 'Produtos',
+        icon: 'pi pi-money-bill'
+      },
+      {
+        label: 'Vendas',
+        icon: 'pi pi-money-bill'
+      },
     ]
 
 

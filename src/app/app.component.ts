@@ -12,7 +12,7 @@ import { ClientinfoComponent } from './components/NewClientDetails/clientinfo.co
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [NavbarComponent, LancamentoComponent,ClientesTableComponent],
+  imports: [NavbarComponent,ClientesTableComponent],
 })
 export class AppComponent {
 
