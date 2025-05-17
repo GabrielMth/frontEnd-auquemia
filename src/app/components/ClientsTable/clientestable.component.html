@@ -17,30 +17,21 @@
     </div>
 
     <div class="table-wrapper">
-      <p-table class="tableclientes"
-      [totalRecords]="totalRegistros"
-      [loading]="false"
-      [value]="clientes"
-      [lazy]="true"
-      [paginator]="true"
-      [stripedRows]="true"
-      [rowsPerPageOptions]="[10, 15, 20, 30]"
-      [rows]="15"
-      [tableStyle]="{ 'min-width': '50rem' }"
-      (onLazyLoad)="carregarClientesPaginado($event)"
-      showGridlines
-      selectionMode="single">
+      <p-table class="tableclientes" [totalRecords]="totalRegistros" [loading]="false" [value]="clientes" [lazy]="true"
+        [paginator]="true" [stripedRows]="true" [rowsPerPageOptions]="[10, 15, 20, 30]" [rows]="15"
+        [tableStyle]="{ 'min-width': '50rem' }" (onLazyLoad)="carregarClientesPaginado($event)" showGridlines
+        selectionMode="single">
         <ng-template pTemplate="header">
           <tr>
             <th pSortableColumn="nome" style="width:30%">Nome<p-sortIcon field="nome" /> </th>
-            <th style="width:20%">Documento</th>
+            <th style="width:15%">Documento</th>
             <th style="width:15%">CEP</th>
-            <th style="width:15%">Bairro</th>
+            <th style="width:20%">Bairro</th>
             <th style="width:30%">Contato</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-clientes>
-          <tr [pSelectableRow]="clientes" (dblclick)="onRowDoubleClick()">
+          <tr [pSelectableRow]="clientes" (dblclick)="onRowDoubleClick(clientes)">
             <td>{{ clientes.nome }}</td>
             <td>{{ clientes.documento }}</td>
             <td>{{ clientes.endereco.cep }}</td>
@@ -67,7 +58,7 @@
             <i class="pi pi-user"></i>
           </p-inputgroup-addon>
           <p-floatlabel variant="on">
-            <input pInputText id="nome" autocomplete="off" />
+            <input pInputText id="nome" autocomplete="off" [(ngModel)]="clienteSelecionado.nome" />
             <label for="nome">Nome</label>
           </p-floatlabel>
         </p-inputgroup>
@@ -80,7 +71,8 @@
               <i class="pi pi-address-book"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <p-inputmask id="cpf" mask="999.999.999-99" autocomplete="off" />
+              <p-inputmask id="cpf" mask="999.999.999-99" autocomplete="off"
+                [(ngModel)]="clienteSelecionado.documento" />
               <label for="cpf">CPF</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -92,7 +84,7 @@
               <i class="pi pi-map-marker"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <p-inputmask id="cep" mask="99999-999" autocomplete="off" />
+              <p-inputmask id="cep" mask="99999-999" autocomplete="off" [(ngModel)]="clienteSelecionado.endereco.cep" />
               <label for="cep">CEP</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -106,7 +98,8 @@
               <i class="pi pi-compass"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="bairro" class="inputuseropen1-dialog" />
+              <input pInputText id="bairro" class="inputuseropen1-dialog"
+                [(ngModel)]="clienteSelecionado.endereco.bairro" />
               <label for="bairro">Bairro</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -118,7 +111,8 @@
               <i class="pi pi-building"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="cidade" class="inputuseropen1-dialog" />
+              <input pInputText id="cidade" class="inputuseropen1-dialog"
+                [(ngModel)]="clienteSelecionado.endereco.cidade" />
               <label for="cidade">Cidade</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -132,7 +126,8 @@
               <i class="pi pi-map"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="estado" class="inputuseropen1-dialog" />
+              <input pInputText id="estado" class="inputuseropen1-dialog"
+                [(ngModel)]="clienteSelecionado.endereco.estado" />
               <label for="estado">Estado</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -144,7 +139,8 @@
               <i class="pi pi-warehouse"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <input pInputText id="numcasa" class="inputuseropen1-dialog" required name="numcasa" />
+              <input pInputText id="numcasa" class="inputuseropen1-dialog" required name="numcasa"
+                [(ngModel)]="clienteSelecionado.endereco.numero" />
               <label for="numcasa">Número da Casa</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -157,7 +153,7 @@
             <i class="pi pi-map"></i>
           </p-inputgroup-addon>
           <p-iftalabel>
-            <input pInputText id="rua" class="inputuseropen1-dialog" />
+            <input pInputText id="rua" class="inputuseropen1-dialog" [(ngModel)]="clienteSelecionado.endereco.rua" />
             <label for="rua">Logradouro (Rua)</label>
           </p-iftalabel>
         </p-inputgroup>
@@ -172,7 +168,8 @@
               <i class="pi pi-mobile"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <p-inputmask id="celular" mask="(99) 99999-9999" autocomplete="off" />
+              <p-inputmask id="celular" mask="(99) 99999-9999" autocomplete="off"
+                [(ngModel)]="clienteSelecionado.celular" />
               <label for="celular">Celular</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -184,7 +181,8 @@
               <i class="pi pi-phone"></i>
             </p-inputgroup-addon>
             <p-iftalabel>
-              <p-inputmask id="telefone" mask="(99) 9999-9999" autocomplete="off" />
+              <p-inputmask id="telefone" mask="(99) 9999-9999" autocomplete="off"
+                [(ngModel)]="clienteSelecionado.telefone" />
               <label for="telefone">Telefone</label>
             </p-iftalabel>
           </p-inputgroup>
@@ -196,11 +194,19 @@
 
 
       <p-divider type="dotted" />
-      <div class="footer">
-        <p-tag severity="secondary" value="Cadastro: " />
+
+      <div class="footer" style="display: flex; align-items: center; gap: 0.5rem; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <p-tag severity="secondary" value="Data de Cadastro:"></p-tag>
+          <span>{{ clienteSelecionado.dataCadastro | date:'dd/MM/yyyy HH:mm' }}</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.3rem;">
+          <p-checkbox [(ngModel)]="clienteSelecionado.ativo" [binary]="true"></p-checkbox>
+          <span>{{ clienteSelecionado.ativo ? 'Cliente Ativo' : 'Cliente Inativo' }}</span>
+        </div>
       </div>
-      <!-- <p-autocomplete [(ngModel)]="status" optionLabel="label" placeholder="Selecione o status">
-      </p-autocomplete> -->
+
 
       <ng-template #footer>
         <div class="buttonfooter">

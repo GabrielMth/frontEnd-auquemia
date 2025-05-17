@@ -20,7 +20,7 @@
           <p><strong>Logradouro (Rua):</strong> {{cliente.endereco.rua}} </p>
           <p><strong>Número da casa:</strong> {{cliente.endereco.numero}} </p>
           <p><strong>Estado (UF):</strong> {{cliente.endereco.estado}} </p>
-          <p><strong>Data de Cadastro:</strong> TESTE </p>
+          <p><strong>Data de Cadastro:</strong> {{ cliente.dataCadastro | date:'dd/MM/yyyy HH:mm' }} </p>
         </div>
 
         <div class="cupom-footer">

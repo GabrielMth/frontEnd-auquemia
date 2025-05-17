@@ -39,15 +39,30 @@ export class ClientesTableComponent {
     private clienteService: ClienteService
   ) { }
 
-  status: boolean = true;
+  ativarDesativarCliente: boolean = false;
   visibleDialogDetails: boolean = false;
-
   dialogCadastroCliente: boolean = false;
 
 
   clientes: Cliente[] = [];
   totalRegistros: number = 0;
   carregando: boolean = false;
+
+  clienteSelecionado: Cliente = {
+    nome: '',
+    documento: '',
+    endereco: {
+      cep: '',
+      bairro: '',
+      cidade: '',
+      estado: '',
+      numero: '',
+      rua: ''
+    },
+    celular: '',
+    telefone: '',
+    ativo: true
+  };
 
   carregarClientesPaginado(event: any): void {
     this.carregando = true;
@@ -70,7 +85,8 @@ export class ClientesTableComponent {
     });
   }
 
-  onRowDoubleClick(): void {
+  onRowDoubleClick(cliente: Cliente): void {
+    this.clienteSelecionado = structuredClone(cliente);
     this.visibleDialogDetails = true;
   }
 

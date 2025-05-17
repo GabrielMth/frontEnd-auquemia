@@ -8,4 +8,5 @@ export interface Cliente {
   telefone?: string;
   ativo: boolean;
   endereco: Endereco;
+  dataCadastro?: string;
 }
